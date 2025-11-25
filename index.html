@@ -1,808 +1,664 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js" >
+<html lang="en">
 <head>
-
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farzana Chowdhury</title>
+    <link rel="icon" type="image/png" href="farzanachowdhury.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <script>
-        document.documentElement.classList.remove('no-js');
-        document.documentElement.classList.add('js');
-    </script>
+        :root {
+            --primary: #494e52;
+            --link: #0066cc;
+            --link-hover: #0052a3;
+            --border: #d3d3d3;
+            --bg-gray: #f5f5f5;
+            --sidebar-bg: #fff;
+        }
 
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/styles.css">
+        body {
+            font-family: 'PT Sans', sans-serif;
+            line-height: 1.7;
+            color: #494e52;
+            background: #fff;
+        }
 
-    <!-- favicons
-    ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="Farzana_logo.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Farzana_logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Farzana_logo.png">
-    <link rel="manifest" href="site.webmanifest">
+        /* Layout */
+        .wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+        }
 
+        /* Sidebar */
+        .sidebar {
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 0;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .sidebar h1 {
+            font-family: 'PT Serif', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .sidebar .tagline {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .sidebar nav {
+            margin-top: 2rem;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav li {
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1rem;
+            display: block;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+        }
+
+        .sidebar nav a:hover {
+            color: var(--link);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .social-links a {
+            color: var(--link);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem;
+            max-width: 1000px;
+        }
+
+        h2 {
+            font-family: 'PT Serif', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            font-family: 'PT Serif', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        /* Research Interests */
+        .research-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .research-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .research-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--link);
+            font-weight: bold;
+        }
+
+        .research-list strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Publications */
+        .pub-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .pub-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-title {
+            font-family: 'PT Serif', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .pub-authors {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .pub-venue {
+            color: #888;
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-links {
+            margin-top: 0.5rem;
+        }
+
+        .pub-links a {
+            color: var(--link);
+            text-decoration: none;
+            margin-right: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .pub-links a:hover {
+            text-decoration: underline;
+        }
+
+        .pub-type {
+            display: inline-block;
+            background: var(--bg-gray);
+            padding: 0.2rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-item {
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 5px;
+            transition: box-shadow 0.3s;
+        }
+
+        .project-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .project-item h4 {
+            font-family: 'PT Serif', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-label {
+            color: var(--link);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--bg-gray);
+            padding: 0.3rem 0.7rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-family: 'PT Serif', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .experience-org {
+            color: var(--link);
+            font-size: 1.05rem;
+            margin-top: 0.3rem;
+        }
+
+        .experience-date {
+            color: #888;
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .experience-description ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .experience-description li {
+            margin-bottom: 0.6rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: var(--link);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-right: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--link-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--link);
+            border: 2px solid var(--link);
+        }
+
+        .btn-outline:hover {
+            background: var(--link);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Notice Box */
+        .notice {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .notice strong {
+            color: #856404;
+        }
+    </style>
 </head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <img src="Farzana_dp.jpeg" alt="Farzana Chowdhury" class="profile-img">
+            <h1>Farzana Chowdhury</h1>
+            <p class="tagline">Computer Science & Statistics Student<br>Mount Holyoke College</p>
+            
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#research">Research Interests</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#awards">Awards & Leadership</a></li>
+                </ul>
+            </nav>
 
+            <div class="social-links">
+                <a href="mailto:chowd23f@mtholyoke.edu">Email</a>
+                <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/ChowdhuryFarzana" target="_blank">GitHub</a>
+                <a href="https://docs.google.com/document/d/1cmdVTL7DakUjjEFwg6uSCn8RTBB3aYNZ/edit" target="_blank">CV / Resume</a>
+            </div>
+        </aside>
 
-<body id="top">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- About -->
+            <section id="about">
+                <h2>About Me</h2>
+                
+                <!-- <div class="notice">
+                    <strong>Seeking Fall 2026 graduate opportunities</strong> I'm actively looking for internship positions in software engineering, machine learning, data science, or research. Particularly interested in AI/ML, robotics, and computational biology applications.
+                </div> -->
 
-    
-    <!-- preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader" class="dots-fade">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+                <p>I am a senior at Mount Holyoke College double majoring in Computer Science and Statistics. I am applying to PhD programs for Fall 2026, driven by a passion for developing AI systems that address meaningful real-world challenges.</p>
 
+                <p>My research interests center on machine learning for education, natural language processing, computational biology, and robotics. I am particularly drawn to work that bridges multiple disciplines, whether that's using NLP to understand student learning patterns, applying computational methods to accelerate drug discovery, or developing intelligent systems that can reason and interact with complex environments. I believe the most impactful advances in AI come from combining rigorous technical work with deep attention to societal applications.</p>
 
-    <!-- page wrap
-    ================================================== -->
-    <div id="page" class="s-pagewrap ss-home">
+                <p>Beyond academics, I serve as President of the Bangladeshi Student Association and work as a Resident Advisor, roles that have strengthened my commitment to building communities. </p>
+                
+            </section>
 
+            <!-- Research Interests -->
+            <section id="research">
+                <h2>Research Interests</h2>
+                
+                <ul class="research-list">
+                    <li>
+                        <strong>Machine Learning & Education :</strong> Developed a MCMC-inspired pipelines with large language models for interpretable student persona generation and performance prediction. 
+                    </li>
+                    <li>
+                        <strong>Computational Biology & Drug Discovery:</strong> Investigating protein-ligand binding affinity through Probabilistic Roadmap motion planning algorithms with energy-based evaluation. Benchmarking computational methods against industry standards to accelerate drug discovery processes.
+                    </li>
+                    <li>
+                        <strong>Robotics & Motion Planning:</strong> Exploring multi-robot coordination, autonomous systems optimization, and path planning algorithms. Integrating classical motion planning techniques with modern computational approaches for improved efficiency and accuracy.
+                    </li>
+                    <li>
+                        <strong>Natural Language Processing:</strong> Large language model applications, retrieval-augmented generation (RAG) systems, and AI-powered information systems for real-world applications.
+                    </li>
+            
+                </ul>
+            </section>
 
-        <!-- # site header 
-        ================================================== -->
-        <header class="s-header">
+            <!-- Publications -->
+            <section id="publications">
+                <h2>Publications & Presentations</h2>
 
-            <div class="row s-header__inner width-sixteen-col">
+                <h3>Publications</h3>
+                <div class="pub-item">
+                    <span class="pub-type">Manuscript in Preparation</span>
+                    <div class="pub-title">Iterative MCMC-Style Persona Refinement for Predicting Student Performance with LLMs</div>
+                    <div class="pub-authors"><strong>Chowdhury, Farzana</strong>, Scarlatos, Alex, & Lan, Andrew</div>
+                    <div class="pub-venue">arXiv preprint (forthcoming)</div>
+                    <div class="pub-links">
+                        <!-- <a href="#">[arXiv]</a> -->
+                        <!-- <a href="#">[Code]</a> -->
+                    </div>
+                </div>
 
-                 <div class="s-header__block">
-                    <div class="s-header__logo">
-                        <a class="logo" href="index.html">
-                            <!-- <img src="images/logo.svg" alt="homepage"> -->
-                            <img src="images/Farzana_logo.svg" alt="homepage" style="width: 150px; height: auto;" >
-                        </a>
-                    </div> 
-                    
+                <div class="pub-item">
+                    <span class="pub-type">Under Review</span>
+                    <div class="pub-title">What if DLA has it backwards? Flow reverses aggregation from divergent to convergent growth</div>
+                    <div class="pub-authors">Mulder, Kenneth, Danese, C., Bui, M.-A., Nazhat, A., <strong>Chowdhury, Farzana</strong>, & Chen, W.</div>
+                    <div class="pub-venue">Proceedings of the National Academy of Sciences (PNAS)</div>
+                    <div class="pub-links">
+                        <a href="https://docs.google.com/document/d/1FGGBFDWXkZ-eIDhnD72vThicYom8yUYl/edit?usp=sharing&ouid=114331868253261589919&rtpof=true&sd=true">[PDF]</a>
+                        <!-- <a href="#">[Code]</a> -->
+                    </div>
+                </div>
 
-                    <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
-                </div> <!-- end s-header__block -->
+                <h3>Conference Presentations</h3>
+                <div class="pub-item">
+                    <span class="pub-type">Talk</span>
+                    <div class="pub-title">Development of tools for parameterization and validation of a model of fractal growth using image analysis and embedding</div>
+                    <div class="pub-authors"><strong>Chowdhury, F.</strong>, & Nazhat, A.</div>
+                    <div class="pub-venue">Hudson River Mathematics Conference, 2025</div>
+                    <div class="pub-links">
+                        <!-- <a href="#">[Poster PDF]</a>
+                        <a href="#">[Abstract]</a> -->
+                    </div>
+                </div>
 
-                <nav class="s-header__nav">
-    
-                        <ul class="s-header__menu-links">
-                        <li><a href="">About</a></li>
-                        <li><a href="">Work</a></li> <!-- services -->
-                        <li><a href="">Blog</a></li>
-                        <li><a href="">Contact</a></li> 
-                    </ul>  
-                    <!-- s-header__menu-links -->
-
-                    <!-- <div class="s-header__contact">
-                        <a href="chowd23f@mtholyoke.edu" class="btn btn--primary s-header__contact-btn">Let's Work Together</a>                        
-                    </div>  -->
-                     <!-- s-header__contact -->
-    
-                </nav> <!-- end s-header__nav -->
-
-            </div> <!-- end s-header__inner -->
-
-        </header> <!-- end s-header -->
-
-
-        <!-- # site main content
-        ================================================== -->
-        <section id="content" class="s-content">
-
-            <!-- intro
-            ----------------------------------------------- -->
-            <section id="intro" class="s-intro">
-
-                <div class="row s-intro__content width-sixteen-col">
-
-                    <div class="column lg-12 s-intro__content-inner grid-block">
-                        
-                        <div class="s-intro__content-text">
-                            <div class="s-intro__content-pretitle text-pretitle">Hello, this is Farzana</div>
-                            <h1 class="s-intro__content-title">
-                            I am a tech enthusiast Here!<br>
-                            
-                            
-                         
-                            </h1>
-                        </div> <!-- s-intro__content-text -->
-
-                        <div class="s-intro__content-media"> 
-                            <div class="s-intro__content-media-inner">                               
-                                <img src="Farzana1.jpg" srcset="images/Farzana1.jpg 1x, images/Farzana1.jpg 2x" alt="">
-                                <div class="lines">                               
-                                    <span></span>                                  
-                                </div>
-                            </div>
-                        </div> <!-- s-intro__content-media -->                      
-
-                        <div class="s-intro__scroll-down">
-                            <a href="#about" class="smoothscroll">
-                                <div class="scroll-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#97b34a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">&lt;!--!  Atomicons Free 1.00 by @atisalab License - https://atomicons.com/license/ (Icons: CC BY 4.0) Copyright 2021 Atomicons --&gt;<polyline points="7 13 12 18 17 13"></polyline><line x1="12" y1="18" x2="12" y2="6"></line></svg>
-                                </div>
-                                <span>Scroll for more</span>
-                            </a>
-                        </div> <!-- s-intro__scroll-down -->
-                        
-                    </div> <!-- s-intro__content-inner -->
-
-                </div> <!-- s-intro__content -->
-
-            </section> <!-- end s-intro -->
-
-            <!-- about
-            ----------------------------------------------- -->
-            <section id="about" class="s-about target-section">
-
-                <div class="row s-about__content width-sixteen-col">
-                    <div class="column grid-block grid-section-split">
-
-                        <img src="images/geometric_shape.svg" alt="" class="s-about__content-imgbg">
-
-                        <div class="section-header grid-section-split__header">
-                            <div class="text-pretitle">About</div>                           
-                            <h2 class="text-display-title">
-                             Geek by trade, explorer by nature!
-                            </h2>                           
-                        </div> <!-- end section-header -->
-
-                        <div class="s-about__content-main grid-section-split__primary">
-                            <p class="attention-getter">
-                                I am a Computer Science and Statistics major at Mount Holyoke College. 
-                                My ambition lies in exploring the intersections of AI, AI ethics, robotics, 
-                                and data science to create meaningful impacts.
-                            </p>
-
-                            <p class="attention-getter">
-                                I am particularly interested in the ethical implications of 
-                                AI and strive to ensure that technological progress aligns with societal values. 
-                                By combining my technical expertise with a drive for ethical innovation, 
-                                I seek to create solutions that are not only cutting-edge 
-                                but also responsible and inclusive.
-                            </p>
-
-                            <p class="attention-getter">
-                                Connect with me to discuss opportunities and 
-                                collaborations that drive innovation and societal progress!
-                            </p>
-                        </div> <!-- end s-about__content-main -->
-
-                        <div class="s-about__content-btn grid-section-split__bottom">
-                            <!--
-                            <a href="about.html" class="btn btn--stroke u-fullwidth">More About Me</a>
-                            -->
-
-                            <ul class="s-about__social social-list">
-                                <!-- <li>
-                                    <a href="#0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"></path></svg>
-                                        <span class="u-screen-reader-text">Facebook</span>
-                                    </a>
-                                </li> -->
-                                <li>
-                                    <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank" class="social-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);">
-                                            <path d="M20 0h-16c-2.2 0-4 1.8-4 4v16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4v-16c0-2.2-1.8-4-4-4zm-12 20h-3v-11h3v11zm-1.5-12.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm14.5 12.3h-3v-5.6c0-1.3-.5-2.2-1.7-2.2-1 0-1.6.7-1.9 1.3-.1.2-.1.4-.1.7v5.8h-3v-11h3v1.5c.4-.7 1.2-1.7 3-1.7 2.2 0 3.9 1.4 3.9 4.5v6.7z"></path>
-                                        </svg>
-                                        <span class="u-screen-reader-text">LinkedIn</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/ChowdhuryFarzana" target="_blank" class="social-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="social-icon-svg" viewBox="0 0 24 24">
-                                            <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.92.58.11.79-.25.79-.56 0-.28-.01-1.02-.01-2-3.19.58-4.09-.79-4.35-1.52-.13-.33-.7-1.52-1.2-1.83-.41-.23-1-.8-.01-.82.92-.02 1.58.85 1.8 1.2 1.05 1.76 2.73 1.25 3.4.95.1-.76.41-1.25.74-1.54-2.54-.29-5.22-1.27-5.22-5.65 0-1.25.44-2.28 1.16-3.08-.11-.29-.5-1.48.11-3.08 0 0 .96-.31 3.15 1.18a10.8 10.8 0 012.87-.39c.97.01 1.95.13 2.87.39 2.18-1.49 3.14-1.18 3.14-1.18.61 1.6.23 2.79.12 3.08.72.8 1.16 1.83 1.16 3.08 0 4.39-2.69 5.36-5.24 5.64.42.36.81 1.08.81 2.18 0 1.57-.01 2.83-.01 3.22 0 .31.2.68.8.56C20.71 21.38 24 17.08 24 12 24 5.73 18.77.5 12 .5z"></path>
-                                        </svg>
-                                        <span class="u-screen-reader-text">GitHub</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="chowd23f@mtholyoke.edu" target="_blank" class="social-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);">
-                                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 11 4 6.01V6h16zm-8 6l-8-5v10h16V7l-8 5z"></path>
-                                        </svg>
-                                        <span class="u-screen-reader-text">Email</span>
-                                    </a>
-                                </li>
-                                <!-- <li>
-                                    <a href="#0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M19.633,7.997c0.013,0.175,0.013,0.349,0.013,0.523c0,5.325-4.053,11.461-11.46,11.461c-2.282,0-4.402-0.661-6.186-1.809 c0.324,0.037,0.636,0.05,0.973,0.05c1.883,0,3.616-0.636,5.001-1.721c-1.771-0.037-3.255-1.197-3.767-2.793 c0.249,0.037,0.499,0.062,0.761,0.062c0.361,0,0.724-0.05,1.061-0.137c-1.847-0.374-3.23-1.995-3.23-3.953v-0.05 c0.537,0.299,1.16,0.486,1.82,0.511C3.534,9.419,2.823,8.184,2.823,6.787c0-0.748,0.199-1.434,0.548-2.032 c1.983,2.443,4.964,4.04,8.306,4.215c-0.062-0.3-0.1-0.611-0.1-0.923c0-2.22,1.796-4.028,4.028-4.028 c1.16,0,2.207,0.486,2.943,1.272c0.91-0.175,1.782-0.512,2.556-0.973c-0.299,0.935-0.936,1.721-1.771,2.22 c0.811-0.088,1.597-0.312,2.319-0.624C21.104,6.712,20.419,7.423,19.633,7.997z"></path></svg>
-                                        <span class="u-screen-reader-text">Twitter</span>
-                                    </a>
-                                </li> -->
-                                <!-- <li>
-                                    <a href="#0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"></path><circle cx="16.806" cy="7.207" r="1.078"></circle><path d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"></path></svg>
-                                        <span class="u-screen-reader-text">Instagram</span>
-                                    </a>
-                                </li> -->
-                                
-                            </ul> <!-- end s-footer__social -->
-                        </div> <!-- end s-about__content-btn -->
-                    
-                    </div> <!-- content-inner -->
+                <div class="pub-item">
+                    <span class="pub-type">Poster Presentation</span>
+                    <div class="pub-title">Protein–ligand binding affinity score using Motion Planning Algorithm</div>
+                    <div class="pub-authors"><strong>Chowdhury, F.</strong>, Mozumdar, R., & Uwacu, D.</div>
+                    <div class="pub-venue">Summer Symposium, Mount Holyoke College, 2025</div>
+                    <div class="pub-venue">ACM Massachusetts Gender-Inclusive Computing Celebration (MAGICC), 2025</div>
+                    <div class="pub-links">
+                        <a href="https://drive.google.com/file/d/1MUvLUku9ULIZuY_-4PdOJ5WWY2oe891K/view?usp=sharing">[Poster]</a>
+                    </div>
                 </div>
                 
-            </section> <!-- end s-about -->
+            </section>
 
-            <!-- expertise
-            ----------------------------------------------- -->
-            <section id="expertise" class="s-expertise">
+            <!-- Experience -->
+            <section id="experience">
+                <h2>Research & Professional Experience</h2>
 
-                <div class="row s-expertise__content width-sixteen-col">
-                    <div class="column xl-12 grid-block grid-section-split">
-
-                        <div class="section-header grid-section-split__header">
-                            <div class="text-pretitle">Work Experieces</div>                           
-                            <h2 class="text-display-title">
-                            My Experieces
-                            </h2>     
-                            
-                            <!-- <p class="lead">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum suscipit debitis quam dignissimos veritatis atque pariatur magnam obcaecati fugit reprehenderit vel numquam facere esse est deserunt, perferendis commodi voluptatem similique.
-                            </p> -->
-                        </div> <!-- end section-header -->
-
-                        <div class="s-expertise__content-main grid-section-split__primary">
-
-                            <div class="grid-list-items list-items show-ctr">
-                                <div class="grid-list-items__item list-items__item">
-                                    <div class="grid-list-items__title list-items__item-header">
-                                        <h3 class="list-items__item-title">Robotics, Simulation and Education (RoSE) Lab, Mount Holyoke College, Undergraduate Research Assistant | June 2024 - Present</h3>
-                                    </div>
-                                    <div class="grid-list-items__text list-items__item-text">
-                                        <p>
-                                            <li>The primary objective of this research is to investigate and develop algorithms for multi-robot coordination. 
-                                            Effective coordination among multiple robots is essential for optimizing 
-                                            their collective performance in tasks such as path planning and obstacle avoidance. 
-                                            This research explores decoupled planning algorithms 
-                                            and proposes innovative strategies to improve the efficiency
-                                             of motion planning in multi-robot systems. </li>
-
-                                        </p>
-                                    </div>
-                                </div> <!-- list-item -->
-                                <div class="grid-list-items__item list-items__item">
-                                    <div class="grid-list-items__title list-items__item-header">
-                                        <h3 class="list-items__item-title">Department of Mathematics and Statistics, Mount Holyoke College, Undergraduate Research Assistant | January 2024 - Present</h3>
-                                    </div>
-                                    <div class="grid-list-items__text list-items__item-text">
-                                        <p>
-                                           <li> This research focuses on developing quantitative descriptors for polymers and calibrating
-                                            a triangular agent based growth model to achieve a detailed understanding of spin coated polymer network
-                                            structures. </li>
-                                        </p>
-                                    </div>
-                                </div> <!-- list-expertise__item -->
-                                <div class="grid-list-items__item list-items__item">
-                                    <div class="grid-list-items__title list-items__item-header">
-                                        <h3 class="list-items__item-title">Data Glacier, Data Science Intern | May 2023 - August 2023</h3>
-                                    </div>
-                                    <div class="grid-list-items__text list-items__item-text">
-                                        <p>
-                                            <li> Conducted exploratory data analysis on 300k+ rows of data, presenting taxi market trends for G2M investing. </li>
-                                           <li> Collaborated on datasets, analyzing cleaning methods, building ML models, 
-                                            and deploying a web app for medical condition prediction using Flask and Heroku. </li>
-                                        </p>
-                                    </div>
-                                    <div class="grid-list-items__item list-items__item">
-                                        <div class="grid-list-items__title list-items__item-header">
-                                            <h3 class="list-items__item-title"><strong>MHA Management Holdings</strong> | Data Science Intern | May 2022 - August 2022</h3>
-                                        </div>
-                                        <div class="grid-list-items__text list-items__item-text">
-                                            <ul>
-                                                <li>Analyzed lead and sales data to detect significant factors for successful leads using various data analysis techniques.</li>
-                                                <li>Utilized Tableau and Matplotlib for data visualization, applying machine learning algorithms (Random Forest and k-means clustering) with Python libraries (Scikit-Learn and Pandas) for robust data analysis.</li>
-                                            </ul>
-                                        </div>
-                                    </div> <!-- list-expertise__item -->
-                                </div> <!-- list-expertise__item -->
-                               
-                              
-                                <!-- list-expertise__item -->
-
-                            </div> <!-- grid-list-items -->
-                        </div> <!-- end s-expertise__content-main -->
-
-                        <div class="s-expertise__content-btn grid-section-split__bottom">
-                            <!--
-                            <a href="services.html" class="btn btn--stroke u-fullwidth">View more details</a>
-                            -->
-                        </div> <!-- end s-about__content-btn -->
-
-                    </div> <!-- end grid-block-->
-                </div> <!-- end s-expertise__content -->
-
-            </section> <!-- end s-expertise -->
-
-            <!-- clients
-            ----------------------------------------------- -->
-            <section id="clients" class="s-clients">          
-
-                <div class="row s-clients__content-block width-sixteen-col">
-                    <div class="column xl-12 grid-block grid-section-split">
-                    
-                        <div class="section-header grid-section-split__header">
-                            <div class="text-pretitle">Leadership</div>                           
-                            <h2 class="text-display-title">
-                            Leadership Experieces
-                            </h2>       
-                        </div> <!-- end section-header -->
-                    
-                        <div class="grid-section-split__primary">
-                            <!-- <p class="lead">
-                            Quibusdam quis autem voluptatibus earum vel ex error ea. Lorem ipsum dolor sit amet consectetur 
-                            adipisicing elit. Laborum suscipit debitis quam dignissimos veritatis atque pariatur magnam 
-                            obcaecati fugit reprehenderit vel numquam facere esse est deserunt, perferendis commodi voluptatem similique.
-                            </p>   
-
-                            <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, numquam molestiae vel quaerat quas 
-                            facilis voluptates rerum aspernatur quam voluptatem ea, vitae illo, omnis minus vero minima maiores 
-                            quia nihil incidunt provident debitis ab qui quasi. Iure unde numquam in nulla praesentium nesciunt 
-                            dolore exercitationem, odit expedita minima quisquam ullam ex. Aut perferendis vel consectetur modi esse.
-                            Temporibus reprehenderit alias magni atque repellat aspernatur voluptates, accusantium pariatur libero ad 
-                            nesciunt illum labore facere. Earum iure consequatur cumque omnis maiores optio.
-                            </p> -->
-                            <ul>
-                                <li>
-                                    <strong>Leadership Academy Fellow ’24</strong> | University of Massachusetts Amherst, MA, United States | June 2024 – Present
-                                    <br>Awarded a scholarship to participate in the Leadership Academy, gaining skills in negotiation, leadership, product management, and networking.
-                                </li>
-                                <li>
-                                    <strong>MHC Leadership and Service Award for Engage MHC Pilot Program</strong> | MA, United States | August 2022 – May 2023
-                                    <br>Participated in 10 different extracurricular activities throughout the semester with ECA credits. Engaged in multicultural programs and academic-focused activities, working with peers to share their experiences at Mount Holyoke College.
-                                </li>
-                                <li>
-                                    <strong>Hall Senator</strong> | Mount Holyoke College, MA, United States | September 2023 – Present
-                                    <br>Elected by peers to maintain a liaison between the hall and the Student Government Association.
-                                </li>
-                                <li>
-                                    <strong>President</strong> | Bangladeshi Student Association, Mount Holyoke College, MA, United States | October 2023 – Present
-                                    <br>Introduced Bengali culture and events to the Mount Holyoke College community in collaboration with Bondhu Organization.
-                                </li>
-                                <li>
-                                    <strong>Resident Advisor</strong> | Mount Holyoke College, MA, United States | December 2023 – Present
-                                    <br>Facilitated a supportive community, enforced policies, provided mentorship, and organized events as a Resident Advisor, fostering a positive living environment within the college dorm.
-                                </li>
-                            </ul>
-                        </div> <!-- end grid-section-split__primary -->
-                    
-                    </div> <!-- end column -->
-                </div> <!-- end row -->
-
-                <!-- <div class="row s-clients__content-block width-sixteen-col">
-                    <div class="column xl-12">
-                    
-                        <div class="clients-list">                            
-                            <div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/flash.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/rise.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/cactus.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/pinpoint.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/proline.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/vision.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="column clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/volume.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="column clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/hitech.svg" alt="">
-                                </a>
-                            </div><div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/terra.svg" alt="">
-                                </a>
-                            </div>
-                            <div class="clients-list__item">
-                                <a href="#0">
-                                    <img src="images/clients/chain.svg" alt="">
-                                </a>
-                            </div> -->
-                        <!-- </div> end clients-list -->
-
-                    <!-- </div> end column -->
-                <!-- </div> end row -->
-<!--                                 
-                <div class="row s-clients__content-block width-sixteen-col">
-                    <div class="column xl-12 testimonials">
-                    
-                        <div class="swiper-container testimonials__slider home-slider">
-
-                            <div class="swiper-wrapper">
-                                <div class="testimonials__slide swiper-slide">
-                                    <p>
-                                    Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem. 
-                                    Explicabo a quaerat sint autem dolore ducimus ut consequatur neque. Nisi dolores quaerat fuga rem nihil nostrum.
-                                    Laudantium quia consequatur molestias.
-                                    </p>
-                                    <div class="testimonials__author">
-                                        <img src="images/avatars/user-01.jpg" alt="Author image" class="testimonials__avatar">
-                                        <cite class="testimonials__cite">
-                                            <strong>John Rockefeller</strong>
-                                            <span>Standard Oil Co.</span>
-                                        </cite>
-                                    </div>
-                                </div>
-                                <div class="testimonials__slide swiper-slide">
-                                    <p>
-                                    Nisi dolores quaerat fuga rem nihil nostrum. Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. 
-                                    Voluptas tempore rem. Laudantium quia consequatur molestias.
-                                    Explicabo a quaerat sint autem dolore ducimus ut consequatur neque.
-                                    </p>
-                                    <div class="testimonials__author">
-                                        <img src="images/avatars/user-04.jpg" alt="Author image" class="testimonials__avatar">
-                                        <cite class="testimonials__cite">
-                                            <strong>Andrew Carnegie</strong>
-                                            <span>Carnegie Steel Co.</span>
-                                        </cite>
-                                    </div>
-                                </div>
-                                <div class="testimonials__slide swiper-slide">
-                                    <p>
-                                    Voluptas tempore rem. Molestiae incidunt consequatur quis ipsa autem nam sit enim magni.  
-                                    Explicabo a quaerat sint autem dolore ducimus ut consequatur neque. 
-                                    Nisi dolores quaerat fuga rem nihil nostrum. Laudantium quia consequatur molestias.
-                                    </p>
-                                    <div class="testimonials__author">
-                                        <img src="images/avatars/user-06.jpg" alt="Author image" class="testimonials__avatar">
-                                        <cite class="testimonials__cite">
-                                            <strong>Henry Ford</strong>
-                                            <span>Ford Motor Co.</span>
-                                        </cite>
-                                    </div>
-                                </div>
-                                <div class="testimonials__slide swiper-slide">
-                                    <p>
-                                    Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem. 
-                                    Explicabo a quaerat sint autem dolore ducimus ut consequatur neque. Nisi dolores quaerat fuga rem nihil nostrum.
-                                    Laudantium quia consequatur molestias.
-                                    </p>
-                                    <div class="testimonials__author">
-                                        <img src="images/avatars/user-02.jpg" alt="Author image" class="testimonials__avatar">
-                                        <cite class="testimonials__cite">
-                                            <strong>John Morgan</strong>
-                                            <span>JP Morgan & Co.</span>
-                                        </cite>
-                                    </div>
-                                </div> 
-                            </div> 
-                            end swiper-wrapper 
-
-                            <div class="swiper-pagination"></div>
-
-                        </div> 
-                        end testimonials__slider                     -->
-                    
-                    </div> <!-- end column -->
-                </div> <!-- end row -->
-
-
-            </section> <!-- end s-clients -->            
-
-        </section> <!-- s-content-->
-
-        <!-- # cta
-        ================================================== -->
-        <section id="cta" class="s-cta">
-
-            <!-- <div class="row row-x-center text-center">
-                <div class="column xl-8 lg-12">
-
-                    <div class="s-cta__content">
-                        <h2 class="text-display-title">
-                        Get started with a consultation today.
-                        </h2>
-                        <p class="lead">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis rem, esse doloribus sint eaque at debitis enim vitae minus expedita ratione dignissimos sit nostrum optio sequi. Ipsa at beatae quam.
-                        </p>
-                        <a href="contact.html" class="btn btn--primary">Let's Work Together</a>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Undergraduate Research Assistant</div>
+                        <div class="experience-org">ML4ED Lab, University of Massachusetts Amherst</div>
+                        <div class="experience-date">June 2025 - Present</div>
                     </div>
-
+                    <div class="experience-description">
+                        <ul>
+                            <li>Designed a Metropolis-Hastings-inspired MCMC iterative pipeline with large language models to generate interpretable student personas and predict student performance</li>
+                            <li>Applied prompt engineering techniques to optimize LLM outputs for educational data analysis</li>
+                            <li>Implemented modular pipeline architecture with iteration logging system to track performance gains across different user groups and item categories</li>
+                            <li>Built supporting baselines and comparison frameworks to evaluate different modeling approaches</li>
+                        </ul>
+                    </div>
                 </div>
-            </div> -->
-            <div class="row row-x-center text-center">
-                <div class="column xl-8 lg-12">
-            
-                    <div class="s-cta__content">
-                        <h2 class="text-display-title">
-                        Looking for Internship Opportunities for Summer 2025
-                        </h2>
-                        <p class="lead">
-                        I am actively seeking internship roles in software engineering, machine learning, or data science for Summer 2025. If you're interested in collaborating or have an opportunity available, please reach out. You can also check my resume below.
-                        </p>
-                        <a href="https://docs.google.com/document/d/1cmdVTL7DakUjjEFwg6uSCn8RTBB3aYNZ/edit?usp=sharing&ouid=113365347895589804704&rtpof=true&sd=true" class="btn btn--primary" target="_blank">View My Resume</a>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Robotics Research Assistant</div>
+                        <div class="experience-org">RoSE Lab, Mount Holyoke College</div>
+                        <div class="experience-org">Parasol lab, University of Illinois Urbana-Champaign</div>
+                        <div class="experience-date">June 2024 - Present</div>
                     </div>
-            
+                    <div class="experience-description">
+                        <ul>
+                            <li>Developed protein-ligand binding affinity scoring approach by modifying Probabilistic Roadmap (PRM) motion planning algorithm with energy-based evaluation</li>
+                            <li>Benchmarked results against industry-standard tools (AutoDock, CAVER) to analyze geometric and energetic constraints</li>
+                            <li>Integrated OpenMM molecular dynamics simulations with motion planning algorithms to generate optimal energy for the binding sites. </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-        </section> <!-- end s-cta -->
-
-        <!-- # journal
-        ================================================== -->
-        <!-- <section id="journal" class="s-journal">
-
-            <div class="row s-journal__content width-sixteen-col">
-                <div class="column xl-12 grid-block">
-
-                    <div class="grid-full section-header text-center">
-                        <div class="text-pretitle">Recent Articles</div>                           
-                        <h2 class="text-display-title">
-                        Latest articles from my blog.
-                        </h2>  
-                    </div>  -->
-                    <!-- end section-header --> 
-
-                    <!-- <div class="grid-full s-journal__content-main grid-list-items">
-
-                        <div class="grid-list-items__item blog-card">
-                            <div class="blog-card__header">
-                                <div class="blog-card__cat-links">
-                                    <a href="https://www.dreamhost.com/r.cgi?287326">Sponsored</a>
-                                </div>
-                                <h3 class="blog-card__title"><a href="https://www.dreamhost.com/r.cgi?287326">Need Web Hosting for Your Websites?</a></h3>
-                            </div>
-                            <div class="blog-card__text">
-                                <p>
-                                Need hosting for your website? We would highly recommend <a href="https://www.dreamhost.com/r.cgi?287326">DreamHost</a>.
-                                Enjoy 100% in-house support, guaranteed performance and uptime, 1-click installs, and a super-intuitive control 
-                                panel to make managing your websites and projects easy. <a href="https://www.dreamhost.com/r.cgi?287326">Sign up</a> now to get started.
-                                </p>
-                            </div> -->
-                        <!-- </div> -->
-                         <!-- end blog-card -->
-                        <!-- <div class="grid-list-items__item blog-card">
-                            <div class="blog-card__header">
-                                <div class="blog-card__cat-links">
-                                    <a href="blog.html">Productivity</a>
-                                </div>
-                                <h3 class="blog-card__title"><a href="single.html">5 Marketing Productivity Apps for Your Team</a></h3>
-                            </div>
-                            <div class="blog-card__text">
-                                <p>
-                                Rerum quam quos. Quibusdam quis autem voluptatibus earum vel ex error ea magni. Aut asperiores 
-                                sit mollitia. Rem neque et voluptatem eos quia sed eligendi et. Eaque velit eligendi ut 
-                                magnam. Cumque ducimus laborum doloribus facere maxime vel earum quidem enim suscipit.
-                                </p>
-                            </div> -->
-                        <!-- </div> end blog-card -->
-                        <!-- <div class="grid-list-items__item blog-card">
-                            <div class="blog-card__header">
-                                <div class="blog-card__cat-links">
-                                    <a href="blog.html">SEO</a>
-                                </div>
-                                <h3 class="blog-card__title"><a href="single.html">7 SEO Factors to Consider for Better Website Ranking</a></h3>
-                            </div>
-                            <div class="blog-card__text">
-                                <p>
-                                Quibusdam quis autem voluptatibus earum vel ex error ea magni. Rerum quam quos. Aut asperiores 
-                                sit mollitia. Rem neque et voluptatem eos quia sed eligendi et. Eaque velit eligendi ut 
-                                magnam. Cumque ducimus laborum doloribus facere maxime vel earum quidem enim suscipit.
-                                </p>
-                            </div> -->
-                        <!-- </div> end blog card -->
-                        <!-- <div class="grid-list-items__item blog-card">
-                            <div class="blog-card__header">
-                                <div class="blog-card__cat-links">
-                                    <a href="blog.html">Productivity</a>
-                                </div>
-                                <h3 class="blog-card__title"><a href="single.html">5 Effective Web Design Principles</a></h3>
-                            </div>
-                            <div class="blog-card__text">
-                                <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum ullam et laborum aperiam. 
-                                Dignissimos quae voluptatibus ullam esse sapiente fugiat, rerum labore cupiditate obcaecati 
-                                dolore necessitatibus id magni rem officia dolor nam sit laudantium. Quo eaque eveniet quibusdam unde. 
-                                </p>
-                            </div>
-                        </div>  -->
-                        
-                        <!-- end blog-card --> 
-
-                    </div> <!-- end grid-list-items -->
-
-                </div> <!-- end grid-block-->
-            </div> <!-- end s-journal__content -->
-
-        </section> <!-- end s-journal -->
-        <!-- # project-gallery
- 
- 
-           ================================================== -->
-
-         
-<!-- <section id="project-gallery" class="s-project-gallery">
-
-    <div class="row s-project-gallery__content width-sixteen-col">
-        <div class="column xl-12 grid-block">
-
-            <div class="grid-full section-header text-center">
-                <div class="text-pretitle">Gallery</div>                           
-                <h2 class="text-display-title">
-                My Projects, Team, and Interests
-                </h2>  
-            </div>  -->
-            <!-- end section-header --> 
-
-            <!-- <div class="grid-full s-project-gallery__content-main grid-list-items">
-
-                <div class="grid-list-items__item gallery-card">
-                    <div class="gallery-card__image">
-                        <img src="path/to/your/project-image1.jpg" alt="Project Image 1">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Mathematics Research Assistant</div>
+                        <div class="experience-org">Department of Mathematics and Statistics, Hampshire College</div>
+                        <div class="experience-date">January 2024 - May 2025</div>
                     </div>
-                    <div class="gallery-card__text">
-                        <p>
-                            A snapshot of the Duckietown robotics environment setup, showcasing the configuration and physical components.
-                        </p>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Explored triangular agent-based model to simulate fractal growth patterns in spin-coated polymers</li>
+                            <li>Generated statistics using ImageJ/Fiji with Mitochondrial Network Analysis (MiNA) preprocessing</li>
+                            <li>Developed automated algorithm to calculate angles between polymer branches</li>
+                        </ul>
                     </div>
-                </div>  -->
-                <!-- end gallery-card -->
-
-                <!-- <div class="grid-list-items__item gallery-card">
-                    <div class="gallery-card__image">
-                        <img src="path/to/your/project-image2.jpg" alt="Project Image 2">
-                    </div>
-                    <div class="gallery-card__text">
-                        <p>
-                            Conducting multi-robot coordination research with my team in the lab.
-                        </p>
-                    </div>
-                </div>  -->
-                <!-- end gallery-card -->
-
-                <!-- <div class="grid-list-items__item gallery-card">
-                    <div class="gallery-card__image">
-                        <img src="path/to/your/project-image3.jpg" alt="Project Image 3">
-                    </div>
-                    <div class="gallery-card__text">
-                        <p>
-                            Our team presenting at the Science Center Symposium.
-                        </p>
-                    </div>
-                </div> -->
-                 <!-- end gallery-card -->
-
-                <!-- <div class="grid-list-items__item gallery-card">
-                    <div class="gallery-card__image">
-                        <img src="path/to/your/fun-activity-image1.jpg" alt="Fun Activity Image 1">
-                    </div>
-                    <div class="gallery-card__text">
-                        <p>
-                            Enjoying a hike during a weekend break.
-                        </p>
-                    </div>
-                </div>  -->
-                <!-- end gallery-card -->
-
-                <!-- <div class="grid-list-items__item gallery-card">
-                    <div class="gallery-card__image">
-                        <img src="path/to/your/fun-activity-image2.jpg" alt="Fun Activity Image 2">
-                    </div>
-                    <div class="gallery-card__text">
-                        <p>
-                            Kayaking adventure with friends.
-                        </p>
-                    </div>
-                </div>  -->
-                <!-- end gallery-card -->
-
-            <!-- </div> end grid-list-items -->
-
-        <!-- </div> end grid-block -->
-    <!-- </div> end s-project-gallery__content -->
-
-  <!-- </section>  -->
-  <!-- end s-project-gallery -->
-
-
-
-         <!-- # footer  -->
-        <!-- ================================================== --> 
-       
-        <footer class="s-footer">
-            <div class="row s-footer__content">
-                <div class="column xl-6 lg-6 md-12 s-footer__block s-footer__about">                    
-                    <h3>About Me</h3>
-                    <p>
-                    I am an aspiring software engineer and data scientist, actively seeking internship opportunities for Summer 2025. I have experience in robotics, machine learning, and data analysis, and I am passionate about leveraging technology to solve real-world problems. Feel free to reach out for collaboration or to discuss potential opportunities.
-                    </p>               
-                </div>                
-                <!-- <div class="column xl-3 lg-6 md-12 s-footer__block s-footer__site-links">
-                    <h3>Site Links</h3>
-                    <ul class="link-list">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="blog.html">Journal</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div> -->
-                <div class="column xl-3 lg-6 md-12 tab-12 s-footer__block s-footer__newsletter">
-                    <h3>Contact</h3>
-                    <ul class="link-list">
-                        <li><a href="mailto:chowd23f@mtholyoke.edu">Email: chowd23f@mtholyoke.edu</a></li>
-                        <li><a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank">LinkedIn: chowdhuryfarzana</a></li>
-                        <li><a href="https://github.com/ChowdhuryFarzana" target="_blank">GitHub: ChowdhuryFarzana</a></li>
-                    </ul>
                 </div>
-            </div>    
-            
-            <div class="row s-footer__bottom">
-                <div class="column xl-6 lg-12">
-                    <ul class="s-footer__social social-list">
-                        <li>
-                            <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank" class="social-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);">
-                                    <path d="M20 0h-16c-2.2 0-4 1.8-4 4v16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4v-16c0-2.2-1.8-4-4-4zm-12 20h-3v-11h3v11zm-1.5-12.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm14.5 12.3h-3v-5.6c0-1.3-.5-2.2-1.7-2.2-1 0-1.6.7-1.9 1.3-.1.2-.1.4-.1.7v5.8h-3v-11h3v1.5c.4-.7 1.2-1.7 3-1.7 2.2 0 3.9 1.4 3.9 4.5v6.7z"></path>
-                                </svg>
-                                <span class="u-screen-reader-text">LinkedIn</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/ChowdhuryFarzana" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.92.58.11.79-.25.79-.56 0-.28-.01-1.02-.01-2-3.19.58-4.09-.79-4.35-1.52-.13-.33-.7-1.52-1.2-1.83-.41-.23-1-.8-.01-.82.92-.02 1.58.85 1.8 1.2 1.05 1.76 2.73 1.25 3.4.95.1-.76.41-1.25.74-1.54-2.54-.29-5.22-1.27-5.22-5.65 0-1.25.44-2.28 1.16-3.08-.11-.29-.5-1.48.11-3.08 0 0 .96-.31 3.15 1.18a10.8 10.8 0 0 1 2.87-.39c.97.01 1.95.13 2.87.39 2.18-1.49 3.14-1.18 3.14-1.18.61 1.6.23 2.79.12 3.08.72.8 1.16 1.83 1.16 3.08 0 4.39-2.69 5.36-5.24 5.64.42.36.81 1.08.81 2.18 0 1.57-.01 2.83-.01 3.22 0 .31.2.68.8.56C20.71 21.38 24 17.08 24 12 24 5.73 18.77.5 12 .5z"></path></svg>
-                                <span class="u-screen-reader-text">GitHub</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:chowd23f@mtholyoke.edu">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 11 4 6.01V6h16zm-8 6l-8-5v10h16V7l-8 5z"></path></svg>
-                                <span class="u-screen-reader-text">Email</span>
-                            </a>
-                        </li>
-                    </ul> <!-- end s-footer__social -->
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Data Science Intern</div>
+                        <div class="experience-org">Data Glacier, India</div>
+                        <div class="experience-date">May 2023 - August 2023</div>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Performed data analysis on 300k+ rows of taxi data to identify market trends for investment decisions</li>
+                            <li>Built and evaluated ML models (Logistic Regression, Random Forest) for medical condition prediction</li>
+                            <li>Deployed final model as Flask web application on Heroku</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="column xl-6 lg-12">
-                    <p class="ss-copyright">
-                        <span>© Copyright Farzana Chowdhury 2024</span> 
-                        <span>Design by <a href="https://www.styleshout.com/">StyleShout</a> Distribution By <a href="https://themewagon.com">ThemeWagon</a></span>
-                    </p>
+            </section>
+
+            <!-- Projects -->
+            <section id="projects">
+                <h2>Selected Projects</h2>
+
+                <div class="project-grid">
+                    <div class="project-item">
+                        <h4>CurrencyPairs</h4>
+                        <span class="project-label">Best Finance Hack Winner - HackHolyoke 2024</span>
+                        <p class="project-description">Real-time forex analytics platform with predictive insights. Integrated live data from yFinance and OANDA API with interactive dashboard.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">Vue.js</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <h4>Theraplane</h4>
+                        <span class="project-label">HackHarvard 2024</span>
+                        <p class="project-description">AI-powered scheduling platform using GPT-4 and RAG to prioritize student appointments by urgency for college counselors.</p>
+                        <div class="project-tags">
+                            <span class="tag">GPT-4</span>
+                            <span class="tag">RAG</span>
+                            <span class="tag">Flask</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <h4>Healthcare Persistency Prediction</h4>
+                        <span class="project-label">Machine Learning Application</span>
+                        <p class="project-description">Random Forest model predicting patient medication adherence with comprehensive feature engineering and web interface.</p>
+                        <div class="project-tags">
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">Random Forest</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <h4>Cat Loaf CNN Classifier</h4>
+                        <span class="project-label">Deep Learning</span>
+                        <p class="project-description">CNN achieving 66% validation accuracy classifying cat poses with advanced preprocessing and data augmentation.</p>
+                        <div class="project-tags">
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Keras</span>
+                            <span class="tag">CNN</span>
+                        </div>
+                    </div>
                 </div>
-        
-                <div class="ss-go-top">
-                    <a class="smoothscroll" title="Back to Top" href="#top">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 12 6 7 11"></polyline><line x1="12" y1="18" x2="12" y2="6"></line></svg>
-                    </a>
-                </div> <!-- end ss-go-top -->
-            </div>
-            
-        </footer> <!-- end s-footer -->
-        
+            </section>
 
-    </div> <!-- end page-wrap -->
+            <!-- Awards & Leadership -->
+            <section id="awards">
+                <h2>Awards & Leadership</h2>
 
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+                <h3>Awards & Honors</h3>
+                <ul class="research-list">
+                    <li><strong>Leadership Academy Fellow</strong> - University of Massachusetts Amherst (2024). Competitive scholarship for advanced leadership development, negotiation, and product management.</li>
+                    <li><strong>Jennifer Dawn Landry '93 Memorial Award</strong> - Mount Holyoke College (2025). Outstanding academic achievement in Computer Science.</li>
+                    <li><strong>Lynk Research Scholarship</strong> - Mount Holyoke College (2024). Excellence in undergraduate research and innovative interdisciplinary approaches.</li>
+                    <li><strong>MHC Leadership & Service Award</strong> - Mount Holyoke College (2023). Recognition for engagement in multicultural programs and academic activities.</li>
+                </ul>
 
+                <h3>Leadership Positions</h3>
+                <ul class="research-list">
+                    <li><strong>President, Bangladeshi Student Association</strong> (2023 - Present). Leading cultural initiatives and community events fostering cross-cultural understanding.</li>
+                    <li><strong>Resident Advisor, Mount Holyoke College</strong> (2023 - Present). Mentoring students and creating supportive residential environments.</li>
+                    <li><strong>Marketing & Media Assistant, Computer Science Society</strong> (2024 - 2025). Developing marketing strategies to increase student engagement with CS opportunities.</li>
+                    <li><strong>Hall Senator, Mount Holyoke College</strong> (2023 - Present). Elected liaison advocating for student needs in college governance.</li>
+                </ul>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>Feel free to reach out via email at <a href="mailto:chowd23f@mtholyoke.edu">chowd23f@mtholyoke.edu</a> or connect with me on <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank">LinkedIn</a>. I'm always happy to discuss research collaborations, internship opportunities, or just chat about cool ideas!</p>
+                
+                <a href="mailto:chowd23f@mtholyoke.edu" class="btn">Email Me</a>
+                <a href="https://docs.google.com/document/d/1cmdVTL7DakUjjEFwg6uSCn8RTBB3aYNZ/edit" class="btn btn-outline" target="_blank">Download CV</a>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
