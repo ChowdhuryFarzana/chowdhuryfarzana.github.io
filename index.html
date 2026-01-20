@@ -270,6 +270,19 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
+        .project-links {
+            margin-top: 10px;
+        }
+        
+        .project-links a {
+            color: blue;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        
+        .project-links a:hover {
+            text-decoration: underline;
+        }
 
         .tag {
             background: var(--bg-gray);
@@ -416,7 +429,7 @@
                 <a href="mailto:chowd23f@mtholyoke.edu">Email</a>
                 <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank">LinkedIn</a>
                 <a href="https://github.com/ChowdhuryFarzana" target="_blank">GitHub</a>
-                <a href="https://docs.google.com/document/d/1cmdVTL7DakUjjEFwg6uSCn8RTBB3aYNZ/edit" target="_blank">CV / Resume</a>
+                <a href="https://docs.google.com/document/d/1JJJiuOr56T40j8r2YM94sqPAUlWvLBBt/edit" target="_blank">CV / Resume</a>
             </div>
         </aside>
 
@@ -434,7 +447,7 @@
 
                 <p>My research interests center on machine learning for education, natural language processing, computational biology, and robotics. I am particularly drawn to work that bridges multiple disciplines, whether that's using NLP to understand student learning patterns, applying computational methods to accelerate drug discovery, or developing intelligent systems that can reason and interact with complex environments. I believe the most impactful advances in AI come from combining rigorous technical work with deep attention to societal applications.</p>
 
-                <p>Beyond academics, I serve as President of the Bangladeshi Student Association and work as a Resident Advisor, roles that have strengthened my commitment to building communities. </p>
+                <p>Beyond academics, I serve as President of the Bangladeshi Student Association and work as a Resident Advisor, roles that have strengthened my commitment to building communities.</p>
                 
             </section>
 
@@ -468,7 +481,8 @@
                     <span class="pub-type">Manuscript in Preparation</span>
                     <div class="pub-title">Iterative MCMC-Style Persona Refinement for Predicting Student Performance with LLMs</div>
                     <div class="pub-authors"><strong>Chowdhury, Farzana</strong>, Scarlatos, Alex, & Lan, Andrew</div>
-                    <div class="pub-venue">arXiv preprint (forthcoming)</div>
+                    <div class="pub-venue"> In preparation of AIED 2026 </div>
+                
                     <div class="pub-links">
                         <!-- <a href="#">[arXiv]</a> -->
                         <!-- <a href="#">[Code]</a> -->
@@ -479,9 +493,9 @@
                     <span class="pub-type">Under Review</span>
                     <div class="pub-title">What if DLA has it backwards? Flow reverses aggregation from divergent to convergent growth</div>
                     <div class="pub-authors">Mulder, Kenneth, Danese, C., Bui, M.-A., Nazhat, A., <strong>Chowdhury, Farzana</strong>, & Chen, W.</div>
-                    <div class="pub-venue">Proceedings of the National Academy of Sciences (PNAS)</div>
+                    <div class="pub-venue">Physical Review Letters</div>
                     <div class="pub-links">
-                        <a href="https://docs.google.com/document/d/1FGGBFDWXkZ-eIDhnD72vThicYom8yUYl/edit?usp=sharing&ouid=114331868253261589919&rtpof=true&sd=true">[PDF]</a>
+                       
                         <!-- <a href="#">[Code]</a> -->
                     </div>
                 </div>
@@ -564,6 +578,21 @@
 
                 <div class="experience-item">
                     <div class="experience-header">
+                        <div class="experience-title"> Teaching Assistant </div>
+                        <div class="experience-org">Department of Mathematics and Computer Science</div>
+                        <div class="experience-date"> August 2023 - May 2025</div>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Tutored and graded classworks for the following three undergraduate level courses: Introduction to Statistics, Linear Algebra, Computer Vision.</li>
+                            <li>Assisted students through homework support and feedback, graded assignments, and helped develop problem solving skills.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
                         <div class="experience-title">Data Science Intern</div>
                         <div class="experience-org">Data Glacier, India</div>
                         <div class="experience-date">May 2023 - August 2023</div>
@@ -580,7 +609,7 @@
 
             <!-- Projects -->
             <section id="projects">
-                <h2>Selected Projects</h2>
+                <h2>Personal Projects</h2>
 
                 <div class="project-grid">
                     <div class="project-item">
@@ -591,6 +620,9 @@
                             <span class="tag">Python</span>
                             <span class="tag">Flask</span>
                             <span class="tag">Vue.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://devpost.com/software/currencypairs" target="_blank">[GitHub]</a>
                         </div>
                     </div>
 
@@ -603,6 +635,9 @@
                             <span class="tag">RAG</span>
                             <span class="tag">Flask</span>
                         </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ChowdhuryFarzana/Theraplane_AI" target="_blank">[GitHub]</a>
+                        </div>
                     </div>
 
                     <div class="project-item">
@@ -614,6 +649,23 @@
                             <span class="tag">Flask</span>
                             <span class="tag">Random Forest</span>
                         </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ChowdhuryFarzana/Healthcare-flask-app" target="_blank">[GitHub]</a>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <h4>Smartphone Usage and Attention Modeling</h4>
+                        <span class="project-label">Data Science Capstone</span>
+                        <p class="project-description">Analyzed 3,000+ behavioral records from StudentLife dataset using mixed-effects regression and ARIMA time-series models to study relationships between smartphone usage patterns and student attention.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">statsmodels</span>
+                            <span class="tag">ARIMA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ChowdhuryFarzana/studentlife-productivity-analysis" target="_blank">[GitHub]</a>
+                        </div>
                     </div>
 
                     <div class="project-item">
@@ -624,6 +676,9 @@
                             <span class="tag">TensorFlow</span>
                             <span class="tag">Keras</span>
                             <span class="tag">CNN</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ChowdhuryFarzana/Cat-vs.-Cat-Loaf" target="_blank">[GitHub]</a>
                         </div>
                     </div>
                 </div>
