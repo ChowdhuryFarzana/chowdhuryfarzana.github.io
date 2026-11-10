@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research · Farzana Chowdhury</title>
+    <meta name="description" content="Research by Farzana Chowdhury: transportation data science, machine learning, geospatial analysis, and interpretable AI.">
+    <link rel="icon" type="image/png" href="Farzana_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+    <div class="container">
+        <a class="brand" href="index.html">Farzana Chowdhury<small>Interpretable ML · Student Modeling · Transportation</small></a>
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html" aria-current="page">Research</a></li>
+            <li><a href="#" data-view="cv" data-pages="3" data-width="900" data-title="Farzana Chowdhury · Curriculum Vitae">CV</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<main id="main" class="container">
+
+    <section style="padding-top:44px">
+        <h1>Research</h1>
+        <p class="lede">I build interpretable machine learning methods for modeling how people learn and how real-world systems behave, from student knowledge to traffic on the road.</p>
+    </section>
+
+    <!-- ===== Research interests ===== -->
+    <section id="interests">
+        <div class="section-head"><h2>Research interests</h2></div>
+        <p>One question runs through my work: <strong>how is knowledge represented, both in the minds of learners and inside the models we build to understand them?</strong> I started by modeling what students know, which led me to ask what language models themselves "know." That in turn made me curious whether we can reach inside a model and change what it does. Along the way, I apply the same habits of careful, interpretable modeling to real-world systems like transportation.</p>
+        <div class="interests">
+            <div class="interest">
+                <h3>Student modeling and cognitive science</h3>
+                <p>A good student model should do more than predict right or wrong answers. It should describe <em>what</em> a learner understands, where their misconceptions are, and how that knowledge is organized. I am drawn to cognitive science for this reason: theories of how people learn, reason, and make errors give student models a structure that pure curve-fitting lacks. In Persona-MCMC, I represented each student as a readable natural-language persona that an LLM can use to predict answers to questions it has never seen. Next, I want to ground personas like these in cognitive theory, so they capture <em>why</em> a student answers the way they do, not only <em>how often</em> they are correct.</p>
+            </div>
+            <div class="interest">
+                <h3>Understanding the core of the transformer</h3>
+                <p>Using LLMs to model students raised a deeper question for me: what do these models actually represent internally? Attention is the core mechanism of the transformer. Each token builds its meaning from a weighted mix of the tokens around it. When I fine-tuned BERT to grade student science answers, I visualized its attention and found that it focused on content words in the question but did not clearly separate correct from incorrect answers. Attention alone did not explain the model's decisions. I want to understand the mechanisms underneath: how concepts are encoded in hidden layers, how information flows from layer to layer, and which components cause a given behavior.</p>
+            </div>
+            <div class="interest">
+                <h3>Activation steering: from understanding to control</h3>
+                <p>If concepts live as directions in a model's activation space, we can test that claim by intervening. Activation steering adds or removes such a direction during the forward pass and measures how the outcome changes. I find this exciting for two reasons. Scientifically, it turns interpretability from correlation into causal evidence: if steering a "misconception" direction changes the answers, the model really uses it. Practically, it could let us shape model behavior precisely, for example simulating a student with a specific misconception, or making an AI tutor more faithful to a learner's level, without retraining.</p>
+            </div>
+            <div class="interest">
+                <h3>Probabilistic and interpretable AI</h3>
+                <p>Across these questions, I prefer methods that show their reasoning. Persona-MCMC combines Markov chain Monte Carlo with language models so that each step of refinement is an explicit, inspectable proposal that is accepted or rejected. I want to keep pairing Bayesian thinking with interpretability, so that models are both accurate and understandable to the people who rely on them.</p>
+            </div>
+            <div class="interest">
+                <h3>Machine learning for transportation systems</h3>
+                <p>At the UF Transportation Institute, I apply the same mindset to infrastructure. Agencies cannot count traffic everywhere, so I build models that estimate intersection turning movement counts and Annual Average Daily Traffic (AADT) from the data that <em>is</em> available. I also build geospatial and computer vision pipelines that link map locations to the right roadway and read traffic values from map images. I care about honest evaluation: how well estimates generalize to new places, and how much each one can be trusted.</p>
+            </div>
+            <div class="interest">
+                <h3>Computational modeling across disciplines</h3>
+                <p>My background spans robotics motion planning applied to protein–ligand binding, and agent-based models of fractal polymer growth. These projects shaped how I work: borrow a strong method from one field, adapt it carefully to another, and benchmark it against the tools practitioners already trust.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section id="projects">
+        <div class="section-head"><h2>Projects</h2></div>
+
+        <!-- Persona-MCMC -->
+        <article class="project wide" id="persona-mcmc">
+            <div>
+                <span class="badge">Interpretable AI · Education</span>
+                <h3>Persona-MCMC: Iterative LLM Persona Refinement for Interpretable Student Modeling</h3>
+                <div class="meta">ML4ED Lab, UMass Amherst · Jun 2025 – Feb 2026 · with A. Scarlatos, H. McNichols &amp; A. Lan · <span class="status">Manuscript in preparation for AIED 2027</span></div>
+                <p>Classical student models such as Item Response Theory summarize a student with a number. That number cannot say <em>what</em> the student knows, and it cannot be used for new questions. Persona-MCMC represents each student instead with a <strong>persona</strong>: a short, human-readable description of their strengths and weaknesses. A large language model then uses the persona to predict how the student will answer questions it has never seen.</p>
+                <p>To find a good persona, one LLM agent proposes small edits to the persona and another predicts the student's answers with it. Each edit is accepted or rejected using a Metropolis-Hastings-style rule based on predictive accuracy. Finally, an aggregation agent merges the top personas into one. On real student responses to math questions (NeurIPS 2020 Education Challenge), Persona-MCMC outperformed IRT and in-context learning baselines and produced personas that are more specific and topic-aware.</p>
+                <p class="method"><b>Method:</b> Multi-agent LLM prompting (GPT-4.1-mini); Metropolis-Hastings-inspired acceptance with annealed temperature; top-K persona aggregation; comparison against 1PL IRT and in-context learning (ICL).</p>
+            </div>
+            <figure class="figure">
+                <div class="fig-grid">
+                    <svg viewBox="0 0 300 250" role="img" aria-labelledby="pm-t1 pm-d1">
+                        <title id="pm-t1">Persona-MCMC loop</title>
+                        <desc id="pm-d1">An update agent proposes a persona, a prediction agent scores it, a Metropolis-Hastings rule accepts or rejects it, and after T iterations the top personas are aggregated.</desc>
+                        <defs><marker id="ah4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5b636b"/></marker></defs>
+                        <g font-family="Inter, sans-serif" font-size="12">
+                            <rect x="70" y="8" width="160" height="40" rx="6" fill="#fff" stroke="#e4e1da"/>
+                            <text x="150" y="25" text-anchor="middle" font-weight="600" fill="#1f2328">Propose persona</text>
+                            <text x="150" y="40" text-anchor="middle" font-size="10.5" fill="#5b636b">update agent</text>
+                            <rect x="170" y="88" width="125" height="40" rx="6" fill="#fff" stroke="#e4e1da"/>
+                            <text x="232" y="105" text-anchor="middle" font-weight="600" fill="#1f2328">Predict answers</text>
+                            <text x="232" y="120" text-anchor="middle" font-size="10.5" fill="#5b636b">prediction agent</text>
+                            <rect x="5" y="88" width="125" height="40" rx="6" fill="#e3f0f0" stroke="#1d6670"/>
+                            <text x="67" y="105" text-anchor="middle" font-weight="600" fill="#1d6670">Accept / reject</text>
+                            <text x="67" y="120" text-anchor="middle" font-size="10.5" fill="#5b636b">MH-style rule</text>
+                            <rect x="60" y="190" width="180" height="48" rx="6" fill="#fff" stroke="#c7772d"/>
+                            <text x="150" y="210" text-anchor="middle" font-weight="600" fill="#1f2328">Aggregate top-K personas</text>
+                            <text x="150" y="226" text-anchor="middle" font-size="10.5" fill="#5b636b">final interpretable persona</text>
+                            <text x="150" y="168" text-anchor="middle" font-size="10.5" fill="#8a929a">after T iterations</text>
+                        </g>
+                        <g stroke="#5b636b" stroke-width="1.4" fill="none" marker-end="url(#ah4)">
+                            <path d="M220 48 C 240 60, 240 70, 236 86"/>
+                            <path d="M168 108 L132 108"/>
+                            <path d="M64 86 C 60 70, 65 55, 80 48"/>
+                            <path d="M67 130 C 70 160, 100 175, 120 188"/>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 320 250" role="img" aria-labelledby="pm-t2 pm-d2">
+                        <title id="pm-t2">Test-set results</title>
+                        <desc id="pm-d2">Accuracy and AUC by method. Persona-MCMC is highest on both: accuracy 0.640, AUC 0.703. 1PL IRT 0.598 and 0.650; ICL 0.620 and 0.620; Initial persona 0.600 and 0.660; Best persona 0.623 and 0.679.</desc>
+                        <g font-family="Inter, sans-serif" font-size="11">
+                            <text x="6" y="16" fill="#8a929a" letter-spacing=".05em">TEST-SET RESULTS (TABLE 1)</text>
+                            <!-- x scale: 0.55 -> 110, 0.72 -> 305 ; 1147 px per unit -->
+                            <g stroke="#ece9e2">
+                                <line x1="110" y1="34" x2="110" y2="200"/><line x1="167" y1="34" x2="167" y2="200"/>
+                                <line x1="225" y1="34" x2="225" y2="200"/><line x1="282" y1="34" x2="282" y2="200"/>
+                            </g>
+                            <g fill="#8a929a" text-anchor="middle">
+                                <text x="110" y="216">0.55</text><text x="167" y="216">0.60</text><text x="225" y="216">0.65</text><text x="282" y="216">0.70</text>
+                            </g>
+                            <g fill="#1f2328" text-anchor="end">
+                                <text x="100" y="58">1PL IRT</text><text x="100" y="92">ICL</text><text x="100" y="126">Initial persona</text><text x="100" y="160">Best persona</text>
+                                <text x="100" y="194" font-weight="600">Persona-MCMC</text>
+                            </g>
+                            <!-- connectors -->
+                            <g stroke="#d6d1c6" stroke-width="2">
+                                <line x1="164" y1="54" x2="225" y2="54"/><line x1="189" y1="88" x2="189" y2="88"/>
+                                <line x1="166" y1="122" x2="235" y2="122"/><line x1="192" y1="156" x2="257" y2="156"/>
+                                <line x1="212" y1="190" x2="284" y2="190"/>
+                            </g>
+                            <!-- accuracy (teal) -->
+                            <g fill="#1d6670">
+                                <circle cx="164" cy="54" r="5"/><circle cx="189" cy="88" r="5"/><circle cx="166" cy="122" r="5"/><circle cx="192" cy="156" r="5"/><circle cx="212" cy="190" r="6"/>
+                            </g>
+                            <!-- AUC (orange) -->
+                            <g fill="#c7772d">
+                                <circle cx="225" cy="54" r="5"/><circle cx="189" cy="88" r="5" fill="none" stroke="#c7772d" stroke-width="2"/><circle cx="235" cy="122" r="5"/><circle cx="257" cy="156" r="5"/><circle cx="284" cy="190" r="6"/>
+                            </g>
+                            <g fill="#5b636b" font-size="10">
+                                <text x="212" y="180" text-anchor="middle">.640</text><text x="284" y="180" text-anchor="middle">.703</text>
+                            </g>
+                            <circle cx="120" cy="236" r="5" fill="#1d6670"/><text x="130" y="240" fill="#1f2328">Accuracy</text>
+                            <circle cx="210" cy="236" r="5" fill="#c7772d"/><text x="220" y="240" fill="#1f2328">AUC</text>
+                        </g>
+                    </svg>
+                </div>
+                <figcaption>Left: the iterative refinement loop. Right: test-set accuracy and AUC from the paper (20 students, NeurIPS 2020 Education Challenge data). For ICL, accuracy and AUC are both ≈0.62, so the two dots overlap.</figcaption>
+            </figure>
+            <div class="btns" style="margin-top:4px">
+                <button class="btn" data-view="persona-mcmc" data-pages="9" data-width="860" data-title="Persona-MCMC: Iterative LLM Persona Refinement for Interpretable Student Modeling">View pre-print</button>
+            </div>
+        </article>
+
+        <!-- AADT pipeline -->
+        <article class="project wide" id="aadt">
+            <div>
+                <span class="badge">Transportation · Ongoing</span>
+                <h3>Location-Based AADT Retrieval with Geospatial Matching</h3>
+                <div class="meta">McTrans Center, University of Florida · Aug 2026 – Present</div>
+                <p><strong>AADT (Annual Average Daily Traffic)</strong> is the average number of vehicles that use a road segment per day over a year. It is one of the most widely used inputs in transportation planning, safety analysis, and design. Getting the right AADT for a spot someone clicks on a map is harder than it sounds. Nearby roads, parallel facilities, intersections, and inconsistent data sources make it easy to match to the wrong segment.</p>
+                <p>I am building a pipeline that takes geographic coordinates, queries transportation data sources through GIS APIs, and uses roadway geometry to match the location to the correct roadway segment or intersection before retrieving its traffic data. I am also testing computer vision and OCR methods to extract and cross-check traffic values printed on transportation maps, with the aim of integrating the pipeline into production transportation software.</p>
+                <p class="method"><b>Method:</b> Python geospatial processing; GIS APIs; spatial roadway and intersection matching; computer vision and OCR for map data extraction and validation.</p>
+            </div>
+            <figure class="figure">
+                <svg viewBox="0 0 760 300" role="img" aria-labelledby="aadt-t aadt-d">
+                    <title id="aadt-t">AADT retrieval pipeline</title>
+                    <desc id="aadt-d">A clicked map point is snapped to the nearest matching roadway segment, whose AADT value is then retrieved; map images are processed with OCR to cross-check values.</desc>
+                    <defs>
+                        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b636b"/></marker>
+                    </defs>
+                    <!-- map panel -->
+                    <rect x="0" y="0" width="300" height="300" rx="6" fill="#f3f1ec"/>
+                    <g stroke="#d6d1c6" stroke-width="10" fill="none" stroke-linecap="round">
+                        <path d="M-5 210 C 80 200, 160 190, 305 150"/>
+                        <path d="M70 -5 L 110 305"/>
+                        <path d="M220 -5 C 210 80, 230 160, 250 305"/>
+                    </g>
+                    <path d="M-5 210 C 80 200, 160 190, 305 150" stroke="#fff" stroke-width="1.5" stroke-dasharray="6 6" fill="none"/>
+                    <!-- matched segment highlight -->
+                    <path d="M110 197 C 150 192, 180 186, 218 176" stroke="#1d6670" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/>
+                    <!-- pin -->
+                    <line x1="160" y1="128" x2="162" y2="187" stroke="#c7772d" stroke-width="1.6" stroke-dasharray="4 3"/>
+                    <circle cx="160" cy="120" r="9" fill="#c7772d"/>
+                    <circle cx="160" cy="120" r="3.5" fill="#fff"/>
+                    <circle cx="162" cy="188" r="4" fill="#fff" stroke="#1d6670" stroke-width="2"/>
+                    <text x="174" y="112" font-size="12" fill="#1f2328" font-family="Inter, sans-serif">user location</text>
+                    <text x="174" y="126" font-size="11" fill="#5b636b" font-family="Inter, sans-serif">(lat, lon)</text>
+                    <text x="112" y="226" font-size="12" fill="#1d6670" font-weight="600" font-family="Inter, sans-serif">matched segment</text>
+                    <text x="112" y="241" font-size="11" fill="#5b636b" font-family="Inter, sans-serif">→ AADT for this segment</text>
+                    <text x="12" y="22" font-size="11" fill="#8a929a" font-family="Inter, sans-serif" letter-spacing=".05em">SPATIAL MATCHING (SCHEMATIC)</text>
+
+                    <!-- pipeline -->
+                    <g font-family="Inter, sans-serif" font-size="12.5" fill="#1f2328">
+                        <rect x="340" y="14" width="200" height="50" rx="6" fill="#fff" stroke="#e4e1da"/>
+                        <text x="352" y="35" font-weight="600">1 · Input location</text>
+                        <text x="352" y="52" fill="#5b636b" font-size="11.5">coordinates from the user</text>
+
+                        <rect x="340" y="86" width="200" height="50" rx="6" fill="#fff" stroke="#e4e1da"/>
+                        <text x="352" y="107" font-weight="600">2 · Query GIS sources</text>
+                        <text x="352" y="124" fill="#5b636b" font-size="11.5">nearby roadway features</text>
+
+                        <rect x="340" y="158" width="200" height="50" rx="6" fill="#e3f0f0" stroke="#1d6670"/>
+                        <text x="352" y="179" font-weight="600">3 · Match road / intersection</text>
+                        <text x="352" y="196" fill="#5b636b" font-size="11.5">distance + roadway geometry</text>
+
+                        <rect x="340" y="230" width="200" height="50" rx="6" fill="#fff" stroke="#e4e1da"/>
+                        <text x="352" y="251" font-weight="600">4 · Return AADT</text>
+                        <text x="352" y="268" fill="#5b636b" font-size="11.5">for the matched segment</text>
+
+                        <rect x="570" y="158" width="180" height="50" rx="6" fill="#fff" stroke="#c7772d" stroke-dasharray="4 3"/>
+                        <text x="582" y="179" font-weight="600">Map images</text>
+                        <text x="582" y="196" fill="#5b636b" font-size="11.5">CV + OCR extraction</text>
+                        <text x="606" y="236" fill="#5b636b" font-size="11.5">cross-check values</text>
+                        <text x="606" y="251" fill="#5b636b" font-size="11.5">before production use</text>
+                    </g>
+                    <g stroke="#5b636b" stroke-width="1.4" fill="none" marker-end="url(#ah)">
+                        <line x1="440" y1="64" x2="440" y2="84"/>
+                        <line x1="440" y1="136" x2="440" y2="156"/>
+                        <line x1="440" y1="208" x2="440" y2="228"/>
+                        <path d="M592 208 L592 240 Q592 255 545 255"/>
+                    </g>
+                </svg>
+                <figcaption>How the pipeline works (schematic). A selected point is snapped to the roadway segment it belongs to, using distance and road geometry, before the segment's AADT is retrieved. A separate computer vision / OCR branch reads traffic values from map images to validate the result.</figcaption>
+            </figure>
+        </article>
+
+        <!-- TMC estimation -->
+        <article class="project wide" id="tmc">
+            <div>
+                <span class="badge">Transportation · Ongoing</span>
+                <h3>Machine Learning Estimation of Intersection Turning Movement Counts</h3>
+                <div class="meta">I-Street, UF Transportation Institute · Aug 2026 – Present</div>
+                <p><strong>Turning movement counts (TMCs)</strong> record how many vehicles turn left, go straight through, or turn right on each approach of an intersection. They are essential for signal timing, capacity analysis, and intersection design. But collecting them requires field counts or video at each site, so most intersections have none.</p>
+                <p>I am developing a machine learning approach that estimates TMCs from traffic and roadway data that are already available. The work covers data processing, feature development, model evaluation, and analysis of where the estimates are reliable and where they are not.</p>
+                <p class="method"><b>Method:</b> Data processing and feature engineering from traffic and roadway data; supervised machine learning; model evaluation and error analysis.</p>
+            </div>
+            <figure class="figure">
+                <div class="fig-grid">
+                    <svg viewBox="0 0 300 300" role="img" aria-labelledby="tmc-t1 tmc-d1">
+                        <title id="tmc-t1">Twelve turning movements at a four-leg intersection</title>
+                        <desc id="tmc-d1">Each of the four approaches has a left, through, and right movement, giving twelve counts to estimate.</desc>
+                        <defs>
+                            <marker id="hL" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c7772d"/></marker>
+                            <marker id="hT" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d6670"/></marker>
+                            <marker id="hR" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6b4fa0"/></marker>
+                            <g id="approach">
+                                <path d="M156 262 L156 222 Q156 212 146 212 L136 212" stroke="#c7772d" stroke-width="3" fill="none" marker-end="url(#hL)"/>
+                                <path d="M165 262 L165 208" stroke="#1d6670" stroke-width="3" fill="none" marker-end="url(#hT)"/>
+                                <path d="M174 262 L174 222 Q174 212 184 212 L194 212" stroke="#6b4fa0" stroke-width="3" fill="none" marker-end="url(#hR)"/>
+                            </g>
+                        </defs>
+                        <rect width="300" height="300" rx="6" fill="#f3f1ec"/>
+                        <rect x="120" y="0" width="60" height="300" fill="#d6d1c6"/>
+                        <rect x="0" y="120" width="300" height="60" fill="#d6d1c6"/>
+                        <g stroke="#fff" stroke-width="1.5" stroke-dasharray="7 6">
+                            <line x1="150" y1="0" x2="150" y2="118"/><line x1="150" y1="182" x2="150" y2="300"/>
+                            <line x1="0" y1="150" x2="118" y2="150"/><line x1="182" y1="150" x2="300" y2="150"/>
+                        </g>
+                        <use href="#approach"/>
+                        <use href="#approach" transform="rotate(90 150 150)"/>
+                        <use href="#approach" transform="rotate(180 150 150)"/>
+                        <use href="#approach" transform="rotate(270 150 150)"/>
+                        <g font-family="Inter, sans-serif" font-size="11" fill="#5b636b">
+                            <text x="196" y="292">Northbound</text>
+                            <text x="8" y="292" fill="#8a929a" letter-spacing=".05em">4 approaches × 3 moves</text>
+                        </g>
+                    </svg>
+                    <svg viewBox="0 0 300 300" role="img" aria-labelledby="tmc-t2 tmc-d2">
+                        <title id="tmc-t2">Estimation setup</title>
+                        <desc id="tmc-d2">Available traffic and roadway data are turned into features; a machine learning model fills in the 4 by 3 table of turning counts.</desc>
+                        <g font-family="Inter, sans-serif">
+                            <rect x="0" y="0" width="300" height="300" rx="6" fill="#fff"/>
+                            <text x="10" y="22" font-size="11" fill="#8a929a" letter-spacing=".05em">ESTIMATION SETUP (SCHEMATIC)</text>
+                            <rect x="10" y="36" width="280" height="44" rx="6" fill="#f3f1ec"/>
+                            <text x="22" y="55" font-size="12.5" font-weight="600" fill="#1f2328">Available traffic + roadway data</text>
+                            <text x="22" y="71" font-size="11" fill="#5b636b">→ processed into model features</text>
+                            <path d="M150 82 L150 98" stroke="#5b636b" stroke-width="1.4" marker-end="url(#ah2)"/>
+                            <rect x="70" y="100" width="160" height="36" rx="6" fill="#e3f0f0" stroke="#1d6670"/>
+                            <text x="150" y="123" font-size="12.5" font-weight="600" fill="#1d6670" text-anchor="middle">ML model</text>
+                            <path d="M150 138 L150 154" stroke="#5b636b" stroke-width="1.4" marker-end="url(#ah2)"/>
+                            <defs><marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5b636b"/></marker></defs>
+                            <!-- table -->
+                            <g font-size="11.5" text-anchor="middle">
+                                <text x="125" y="174" fill="#c7772d" font-weight="600">Left</text>
+                                <text x="185" y="174" fill="#1d6670" font-weight="600">Thru</text>
+                                <text x="245" y="174" fill="#6b4fa0" font-weight="600">Right</text>
+                                <g fill="#5b636b" text-anchor="start">
+                                    <text x="14" y="198">Northbound</text><text x="14" y="226">Southbound</text>
+                                    <text x="14" y="254">Eastbound</text><text x="14" y="282">Westbound</text>
+                                </g>
+                                <g fill="#f3f1ec" stroke="#e4e1da">
+                                    <rect x="100" y="182" width="50" height="22" rx="3"/><rect x="160" y="182" width="50" height="22" rx="3"/><rect x="220" y="182" width="50" height="22" rx="3"/>
+                                    <rect x="100" y="210" width="50" height="22" rx="3"/><rect x="160" y="210" width="50" height="22" rx="3"/><rect x="220" y="210" width="50" height="22" rx="3"/>
+                                    <rect x="100" y="238" width="50" height="22" rx="3"/><rect x="160" y="238" width="50" height="22" rx="3"/><rect x="220" y="238" width="50" height="22" rx="3"/>
+                                    <rect x="100" y="266" width="50" height="22" rx="3"/><rect x="160" y="266" width="50" height="22" rx="3"/><rect x="220" y="266" width="50" height="22" rx="3"/>
+                                </g>
+                                <g fill="#8a929a">
+                                    <text x="125" y="197">?</text><text x="185" y="197">?</text><text x="245" y="197">?</text>
+                                    <text x="125" y="225">?</text><text x="185" y="225">?</text><text x="245" y="225">?</text>
+                                    <text x="125" y="253">?</text><text x="185" y="253">?</text><text x="245" y="253">?</text>
+                                    <text x="125" y="281">?</text><text x="185" y="281">?</text><text x="245" y="281">?</text>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <figcaption>Left: a four-leg intersection has 12 turning movements (left, through, right on each approach). Right: the estimation problem. The model fills in this table for intersections that have no field counts.</figcaption>
+            </figure>
+        </article>
+
+        <!-- Protein-ligand -->
+        <article class="project" id="protein-ligand">
+            <a class="thumb" href="#" data-view="protein-ligand" data-pages="1" data-width="1100" data-title="Protein–Ligand Affinity Score Using Motion Planning (poster)">
+                <img src="assets/research/protein-ligand/thumb.jpg" alt="Basic probabilistic roadmap around obstacles, and the modified version sampling ligand poses around a protein" draggable="false">
+            </a>
+            <div>
+                <span class="badge">Robotics · Computational Biology</span>
+                <h3>Protein–Ligand Affinity Score Using Motion Planning</h3>
+                <div class="meta">RoSE Lab, Mount Holyoke &amp; Parasol Lab, UIUC · Jun 2024 – Dec 2025 · with R. Mozumdar &amp; D. Uwacu</div>
+                <p>For a drug molecule (ligand) to work, it must both reach a protein's binding site through an access tunnel and fit there in a low-energy pose. Standard tools like AutoDock and CAVER often ignore ligand size, flexibility, or energy along the way. We adapted a <strong>Probabilistic Roadmap (PRM)</strong>, a robot motion-planning algorithm, to sample ligand configurations in a sphere around the active site. We scored each sample with an energy function to map the energy landscape, then compared the poses with AutoDock's. The sampled poses clustered consistently near the binding pocket (RMSD 6.25–6.97 Å to AutoDock poses).</p>
+                <p class="method"><b>Method:</b> Modified PRM sampling (Parasol Planning Library); van der Waals / electrostatic energy evaluation; OpenMM molecular dynamics; benchmarking against AutoDock and CAVER; RMSD analysis.</p>
+                <a class="more" href="#" data-view="protein-ligand" data-pages="1" data-width="1100" data-title="Protein–Ligand Affinity Score Using Motion Planning (poster)">View poster →</a>
+            </div>
+        </article>
+
+        <!-- Fractal growth -->
+        <article class="project" id="fractal">
+            <a class="thumb" href="#" data-view="dla-preprint" data-pages="11" data-width="860" data-title="What if DLA has it backwards? Flow reverses aggregation from divergent to convergent growth (pre-print)">
+                <img src="assets/research/hrumc-slides/thumb.jpg" alt="Lab image of a branching poly(vinyl alcohol) fractal network" draggable="false">
+            </a>
+            <div>
+                <span class="badge">Mathematical Modeling · Computer Vision</span>
+                <h3>What if DLA Has It Backwards? Modeling Convergent Fractal Growth in Polymer Films</h3>
+                <div class="meta">Dept. of Mathematics &amp; Statistics, Hampshire College · Jan 2024 – May 2025 · with K. Mulder, C. Danese, M.-A. Bui, A. Nazhat &amp; W. Chen · <span class="status">Pre-print</span></div>
+                <p>For 40 years, branching fractal patterns have been explained by <strong>Diffusion-Limited Aggregation (DLA)</strong>, where branches grow outward and split apart from a seed. Our pre-print shows that poly(vinyl alcohol) films drying on a surface make the same-looking pattern in the <em>opposite</em> way. Across four drying methods (spin, center, sweep, and parallel), branches start and <strong>converge in the direction of flow</strong>. We introduce a triangular network model with a flow effect that reproduces this convergent growth consistently.</p>
+                <p>My part was building tools to <strong>parameterize and validate</strong> the model against lab images, which I presented at the Hudson River Undergraduate Mathematics Conference (HRUMC) 2025. I compared lab and simulated images with VGG-16 image embeddings: same-concentration model and lab images scored about 0.74 similarity at 99% concentration and 0.63 at 88%. I also turned images into skeleton networks in FIJI, wrote an algorithm to measure the angle at every branch junction, and compared lab and model angle distributions using KL divergence.</p>
+                <p class="method"><b>Method:</b> Triangular agent-based growth simulation; VGG-16 embeddings with cosine similarity; FIJI/ImageJ preprocessing, binarization, and skeletonization; automated branch-angle algorithm; KL divergence.</p>
+                <div class="btns" style="margin-top:.4rem">
+                    <button class="btn" data-view="dla-preprint" data-pages="11" data-width="860" data-title="What if DLA has it backwards? Flow reverses aggregation from divergent to convergent growth (pre-print)">View pre-print</button>
+                    <button class="btn outline" data-view="hrumc-slides" data-pages="24" data-width="1100" data-title="HRUMC 2025: Tools for parameterization and validation of a model of fractal growth (slides)">View HRUMC slides</button>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="links">
+            <a href="mailto:farzanachowdhury@ufl.edu">Email</a>
+            <a href="#" data-view="cv" data-pages="3" data-width="900" data-title="Farzana Chowdhury · Curriculum Vitae">CV</a>
+            <a href="https://github.com/ChowdhuryFarzana" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        © 2026 Farzana Chowdhury
+    </div>
+</footer>
+
+<script src="assets/viewer.js"></script>
+</body>
+</html>

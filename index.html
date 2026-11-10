@@ -4,734 +4,348 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farzana Chowdhury</title>
-    <link rel="icon" type="image/png" href="farzanachowdhury.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #494e52;
-            --link: #0066cc;
-            --link-hover: #0052a3;
-            --border: #d3d3d3;
-            --bg-gray: #f5f5f5;
-            --sidebar-bg: #fff;
-        }
-
-        body {
-            font-family: 'PT Sans', sans-serif;
-            line-height: 1.7;
-            color: #494e52;
-            background: #fff;
-        }
-
-        /* Layout */
-        .wrapper {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
-            padding: 2rem;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .profile-img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 0;
-            margin-bottom: 2.5rem;
-            border: 1px solid var(--border);
-        }
-
-        .sidebar h1 {
-            font-family: 'PT Serif', serif;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .sidebar .tagline {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .sidebar nav {
-            margin-top: 2rem;
-        }
-
-        .sidebar nav ul {
-            list-style: none;
-        }
-
-        .sidebar nav li {
-            margin-bottom: 0.8rem;
-        }
-
-        .sidebar nav a {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 1rem;
-            display: block;
-            padding: 0.3rem 0;
-            transition: color 0.2s;
-        }
-
-        .sidebar nav a:hover {
-            color: var(--link);
-        }
-
-        .social-links {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .social-links a {
-            color: var(--link);
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-
-        .social-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 3rem;
-            max-width: 1000px;
-        }
-
-        h2 {
-            font-family: 'PT Serif', serif;
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
-        }
-
-        h3 {
-            font-family: 'PT Serif', serif;
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1.2rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        section {
-            margin-bottom: 4rem;
-        }
-
-        /* Research Interests */
-        .research-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .research-list li {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .research-list li::before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: var(--link);
-            font-weight: bold;
-        }
-
-        .research-list strong {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        /* Publications */
-        .pub-item {
-            margin-bottom: 2.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #e8e8e8;
-        }
-
-        .pub-item:last-child {
-            border-bottom: none;
-        }
-
-        .pub-title {
-            font-family: 'PT Serif', serif;
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .pub-authors {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .pub-venue {
-            color: #888;
-            font-style: italic;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .pub-links {
-            margin-top: 0.5rem;
-        }
-
-        .pub-links a {
-            color: var(--link);
-            text-decoration: none;
-            margin-right: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .pub-links a:hover {
-            text-decoration: underline;
-        }
-
-        .pub-type {
-            display: inline-block;
-            background: var(--bg-gray);
-            padding: 0.2rem 0.8rem;
-            border-radius: 3px;
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Projects */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-item {
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 5px;
-            transition: box-shadow 0.3s;
-        }
-
-        .project-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .project-item h4 {
-            font-family: 'PT Serif', serif;
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-label {
-            color: var(--link);
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-            display: block;
-        }
-
-        .project-description {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .project-links {
-            margin-top: 10px;
-        }
-        
-        .project-links a {
-            color: blue;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-        
-        .project-links a:hover {
-            text-decoration: underline;
-        }
-
-        .tag {
-            background: var(--bg-gray);
-            padding: 0.3rem 0.7rem;
-            border-radius: 3px;
-            font-size: 0.8rem;
-            color: #666;
-        }
-
-        /* Experience */
-        .experience-item {
-            margin-bottom: 2.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #e8e8e8;
-        }
-
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-
-        .experience-header {
-            margin-bottom: 1rem;
-        }
-
-        .experience-title {
-            font-family: 'PT Serif', serif;
-            font-size: 1.3rem;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .experience-org {
-            color: var(--link);
-            font-size: 1.05rem;
-            margin-top: 0.3rem;
-        }
-
-        .experience-date {
-            color: #888;
-            font-style: italic;
-            font-size: 0.95rem;
-            margin-top: 0.3rem;
-        }
-
-        .experience-description ul {
-            margin-left: 1.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .experience-description li {
-            margin-bottom: 0.6rem;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: var(--link);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: background 0.3s;
-            margin-right: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .btn:hover {
-            background: var(--link-hover);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--link);
-            border: 2px solid var(--link);
-        }
-
-        .btn-outline:hover {
-            background: var(--link);
-            color: white;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: relative;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                text-align: center;
-            }
-
-            .main-content {
-                padding: 2rem 1.5rem;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Notice Box */
-        .notice {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 4px;
-        }
-
-        .notice strong {
-            color: #856404;
-        }
-    </style>
+    <meta name="description" content="Farzana Chowdhury: Research Assistant at the University of Florida Transportation Institute working on transportation data science and machine learning.">
+    <link rel="icon" type="image/png" href="Farzana_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-    <div class="wrapper">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <img src="Farzana_dp.jpeg" alt="Farzana Chowdhury" class="profile-img">
-            <h1>Farzana Chowdhury</h1>
-            <p class="tagline"> Ph.D student <br>University of Florida</p>
-            <p class="tagline">Computer Science & Statistics Student<br>Mount Holyoke College</p>
-            
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#research">Research Interests</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#awards">Awards & Leadership</a></li>
-                </ul>
-            </nav>
+<a class="skip" href="#main">Skip to content</a>
 
-            <div class="social-links">
-                <a href="mailto:chowd23f@mtholyoke.edu">Email</a>
-                <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/ChowdhuryFarzana" target="_blank">GitHub</a>
-                <a href="https://docs.google.com/document/d/1JJJiuOr56T40j8r2YM94sqPAUlWvLBBt/edit" target="_blank">CV / Resume</a>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- About -->
-            <section id="about">
-                <h2>About Me</h2>
-                
-
-                <p> I am a Ph.D. student in Civil Engineering at the University of Florida, advised by Professor <b>Lily Elefteriadou</b> at the UF Transportation Institute. My research focuses on the intersection of transportation engineering and AI.  Previously, I completed my Bachelors degree in Computer Science and Statistics at Mount Holyoke College. </p>
-
-                  <!-- 
-                <p>My research interests center on machine learning and Bayesian methods for transportation systems, with a focus on autonomous vehicles, connected vehicle technologies, and traffic flow modeling. I am particularly interested in work that bridges multiple disciplines, whether that's calibrating driver behavior models with Bayesian inference, evaluating autonomous shuttle deployments through simulation, or bringing methods from NLP and mathematical modeling into new domains. I believe the most impactful work in AI come from combining technical work with attention to societal applications.</p>
-
-            -->
-            </section>
-
-            <!-- 
-            <section id="research">
-                <h2>Research Interests</h2>
-                
-                <ul class="research-list">
-                    <li>
-                        <strong>Machine Learning & Education :</strong> Developed a MCMC-inspired pipelines with large language models for interpretable student persona generation and performance prediction. 
-                    </li>
-                    <li>
-                        <strong>Computational Biology & Drug Discovery:</strong> Investigating protein-ligand binding affinity through Probabilistic Roadmap motion planning algorithms with energy-based evaluation. Benchmarking computational methods against industry standards to accelerate drug discovery processes.
-                    </li>
-                    <li>
-                        <strong>Robotics & Motion Planning:</strong> Exploring multi-robot coordination, autonomous systems optimization, and path planning algorithms. Integrating classical motion planning techniques with modern computational approaches for improved efficiency and accuracy.
-                    </li>
-                    <li>
-                        <strong>Natural Language Processing:</strong> Large language model applications, retrieval-augmented generation (RAG) systems, and AI-powered information systems for real-world applications.
-                    </li>
-            
-                </ul>
-            </section>
-            Research Interests -->
-
-            <!-- Publications -->
-            <section id="publications">
-                <h2>Publications & Presentations</h2>
-
-                <h3>Publications</h3>
-                <div class="pub-item">
-                    <span class="pub-type">Under review</span>
-                    <div class="pub-title">Persona-MCMC: Iterative LLM Persona Refinement for Interpretable Student Modeling</div>
-                    <div class="pub-authors"><strong>Chowdhury, F.</strong>, Scarlatos, A., McNichols, H. & Lan, A.</div>
-                    <div class="pub-venue"> ACL 21st workshop on Innovative Use of NLP for Building Educational Applications (BEA) 2026 </div>
-                
-                    <div class="pub-links">
-                        <!-- <a href="#">[arXiv]</a> -->
-                        <!-- <a href="#">[Code]</a> -->
-                    </div>
-                </div>
-
-                <div class="pub-item">
-                    <span class="pub-type">Under Review</span>
-                    <div class="pub-title">What if DLA has it backwards? Flow reverses aggregation from divergent to convergent growth</div>
-                    <div class="pub-authors">Mulder, K., Danese, C., Bui, M.-A., Nazhat, A., <strong>Chowdhury, F.</strong>, & Chen, W.</div>
-                    <div class="pub-venue">Physical Review Letters</div>
-                    <div class="pub-links">
-                       
-                        <!-- <a href="#">[Code]</a> -->
-                    </div>
-                </div>
-
-                <h3>Conference Presentations</h3>
-                <div class="pub-item">
-                    <span class="pub-type">Talk</span>
-                    <div class="pub-title">Development of tools for parameterization and validation of a model of fractal growth using image analysis and embedding</div>
-                    <div class="pub-authors"><strong>Chowdhury, F.</strong>, & Nazhat, A.</div>
-                    <div class="pub-venue">Hudson River Mathematics Conference, 2025</div>
-                    <div class="pub-links">
-                        <!-- <a href="#">[Poster PDF]</a>
-                        <a href="#">[Abstract]</a> -->
-                    </div>
-                </div>
-
-                <div class="pub-item">
-                    <span class="pub-type">Poster Presentation</span>
-                    <div class="pub-title">Protein–ligand binding affinity score using Motion Planning Algorithm</div>
-                    <div class="pub-authors"><strong>Chowdhury, F.</strong>, Mozumdar, R., & Uwacu, D.</div>
-                    <div class="pub-venue">Summer Symposium, Mount Holyoke College, 2025</div>
-                    <div class="pub-venue">ACM Massachusetts Gender-Inclusive Computing Celebration (MAGICC), 2025</div>
-                    <div class="pub-links">
-                        <a href="https://drive.google.com/file/d/1MUvLUku9ULIZuY_-4PdOJ5WWY2oe891K/view?usp=sharing">[Poster]</a>
-                    </div>
-                </div>
-                
-            </section>
-
-            <!-- Experience -->
-            <section id="experience">
-                <h2>Research & Professional Experience</h2>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title"> Graduate Research Assistant</div>
-                        <div class="experience-org"> University of Florida </div>
-                        <div class="experience-date"> August 2026 - Present</div>
-                    </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title">Undergraduate Research Assistant</div>
-                        <div class="experience-org">ML4ED Lab, University of Massachusetts Amherst</div>
-                        <div class="experience-date">June 2025 - Present</div>
-                    </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Designed a Metropolis-Hastings-inspired MCMC iterative pipeline with large language models to generate interpretable student personas and predict student performance</li>
-                            <li>Applied prompt engineering techniques to optimize LLM outputs for educational data analysis</li>
-                            <li>Implemented modular pipeline architecture with iteration logging system to track performance gains across different user groups and item categories</li>
-                            <li>Built supporting baselines and comparison frameworks to evaluate different modeling approaches</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title">Robotics Research Assistant</div>
-                        <div class="experience-org">RoSE Lab, Mount Holyoke College</div>
-                        <div class="experience-org">Parasol lab, University of Illinois Urbana-Champaign</div>
-                        <div class="experience-date">June 2024 - Present</div>
-                    </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Developed protein-ligand binding affinity scoring approach by modifying Probabilistic Roadmap (PRM) motion planning algorithm with energy-based evaluation</li>
-                            <li>Benchmarked results against industry-standard tools (AutoDock, CAVER) to analyze geometric and energetic constraints</li>
-                            <li>Integrated OpenMM molecular dynamics simulations with motion planning algorithms to generate optimal energy for the binding sites. </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title">Mathematics Research Assistant</div>
-                        <div class="experience-org">Department of Mathematics and Statistics, Hampshire College</div>
-                        <div class="experience-date">January 2024 - May 2025</div>
-                    </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Explored triangular agent-based model to simulate fractal growth patterns in spin-coated polymers</li>
-                            <li>Generated statistics using ImageJ/Fiji with Mitochondrial Network Analysis (MiNA) preprocessing</li>
-                            <li>Developed automated algorithm to calculate angles between polymer branches</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title"> Teaching Assistant </div>
-                        <div class="experience-org">Department of Mathematics and Computer Science</div>
-                        <div class="experience-date"> August 2023 - May 2025</div>
-                    </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Tutored and graded classworks for the following three undergraduate level courses: Introduction to Statistics, Linear Algebra, Computer Vision.</li>
-                            <li>Assisted students through homework support and feedback, graded assignments, and helped develop problem solving skills.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title">Data Science Intern</div>
-                        <div class="experience-org">Data Glacier, India</div>
-                        <div class="experience-date">May 2023 - August 2023</div>
-                    </div>
-                    <div class="experience-description">
-                        <ul>
-                            <li>Performed data analysis on 300k+ rows of taxi data to identify market trends for investment decisions</li>
-                            <li>Built and evaluated ML models (Logistic Regression, Random Forest) for medical condition prediction</li>
-                            <li>Deployed final model as Flask web application on Heroku</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects -->
-            <section id="projects">
-                <h2>Personal Projects</h2>
-
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h4>CurrencyPairs</h4>
-                        <span class="project-label">Best Finance Hack Winner - HackHolyoke 2024</span>
-                        <p class="project-description">Real-time forex analytics platform with predictive insights. Integrated live data from yFinance and OANDA API with interactive dashboard.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Flask</span>
-                            <span class="tag">Vue.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://devpost.com/software/currencypairs" target="_blank">[GitHub]</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <h4>Theraplane</h4>
-                        <span class="project-label">HackHarvard 2024</span>
-                        <p class="project-description">AI-powered scheduling platform using GPT-4 and RAG to prioritize student appointments by urgency for college counselors.</p>
-                        <div class="project-tags">
-                            <span class="tag">GPT-4</span>
-                            <span class="tag">RAG</span>
-                            <span class="tag">Flask</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ChowdhuryFarzana/Theraplane_AI" target="_blank">[GitHub]</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <h4>Healthcare Persistency Prediction</h4>
-                        <span class="project-label">Machine Learning Application</span>
-                        <p class="project-description">Random Forest model predicting patient medication adherence with comprehensive feature engineering and web interface.</p>
-                        <div class="project-tags">
-                            <span class="tag">Scikit-learn</span>
-                            <span class="tag">Flask</span>
-                            <span class="tag">Random Forest</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ChowdhuryFarzana/Healthcare-flask-app" target="_blank">[GitHub]</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <h4>Smartphone Usage and Attention Modeling</h4>
-                        <span class="project-label">Data Science Capstone</span>
-                        <p class="project-description">Analyzed 3,000+ behavioral records from StudentLife dataset using mixed-effects regression and ARIMA time-series models to study relationships between smartphone usage patterns and student attention.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">statsmodels</span>
-                            <span class="tag">ARIMA</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ChowdhuryFarzana/studentlife-productivity-analysis" target="_blank">[GitHub]</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <h4>Cat Loaf CNN Classifier</h4>
-                        <span class="project-label">Deep Learning</span>
-                        <p class="project-description">CNN achieving 66% validation accuracy classifying cat poses with advanced preprocessing and data augmentation.</p>
-                        <div class="project-tags">
-                            <span class="tag">TensorFlow</span>
-                            <span class="tag">Keras</span>
-                            <span class="tag">CNN</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ChowdhuryFarzana/Cat-vs.-Cat-Loaf" target="_blank">[GitHub]</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Awards & Leadership -->
-            <section id="awards">
-                <h2>Awards & Leadership</h2>
-
-                <h3>Awards & Honors</h3>
-                <ul class="research-list">
-                    <li><strong>Leadership Academy Fellow</strong> - University of Massachusetts Amherst (2024). Selected for a competitive fellowship focused on leadership development, negotiation, and strategic communication. Completed intensive workshops with industry leaders and collaborated on case-based problem-solving.
-                    </li>
-                    <li><strong>Jennifer Dawn Landry '93 Memorial Award</strong> - Mount Holyoke College (2025). Awarded to a student demonstrating exceptional perseverance, resilience, and dedication to academic and community excellence.</li>
-                    <li><strong>Andrew W. Mellon Fund for Research Internship </strong> - Awarded for academic excellence and commitment to advancing research. Supported full-time summer research in mathematical modeling. 
-                    </li>
-                    <li><strong>MHC Leadership & Service Award</strong> - Mount Holyoke College (2023). Recognized for outstanding contributions to campus community building, cross-cultural engagement, and mentorship through student organizations and residence life.
-                    </li>
-                </ul>
-
-                <h3>Leadership Positions</h3>
-                <ul class="research-list">
-                    <li><strong>President, Bangladeshi Student Association</strong> (2023 - 2025). Leading cultural initiatives and community events fostering cross-cultural understanding.</li>
-                    <li><strong>Resident Advisor, Mount Holyoke College</strong> (2023 - Present). Mentoring students and creating supportive residential environments.</li>
-                    <li><strong>Marketing & Media Assistant, Computer Science Society</strong> (2024 - 2025). Developing marketing strategies to increase student engagement with CS opportunities.</li>
-                    <li><strong>Hall Senator, Student Government Association, Mount Holyoke College</strong> (2023 - 2024). Elected liaison advocating for student needs in college governance.</li>
-                </ul>
-            </section>
-
-            <!-- Contact -->
-            <section id="contact">
-                <h2>Contact</h2>
-                <p>Feel free to reach out via email at <a href="mailto:chowd23f@mtholyoke.edu">chowd23f@mtholyoke.edu</a> or connect with me on <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank">LinkedIn</a>. I'm always happy to discuss research collaborations, internship opportunities, or just chat about cool ideas!</p>
-                
-                <a href="mailto:chowd23f@mtholyoke.edu" class="btn">Email Me</a>
-                <a href="https://docs.google.com/document/d/1JJJiuOr56T40j8r2YM94sqPAUlWvLBBt/edit?usp=sharing&ouid=113365347895589804704&rtpof=true&sd=true" class="btn btn-outline" target="_blank">Download CV</a>
-            </section>
-        </main>
+<header class="site-header">
+    <div class="container">
+        <a class="brand" href="index.html">Farzana Chowdhury<small>Interpretable ML · Student Modeling · Transportation</small></a>
+        <ul class="nav">
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="#" data-view="cv" data-pages="3" data-width="900" data-title="Farzana Chowdhury · Curriculum Vitae">CV</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </div>
+</header>
+
+<main id="main" class="container">
+
+    <!-- ===== Intro ===== -->
+    <section class="hero" id="about">
+        <div>
+            <h1>Hi, I'm Farzana!</h1>
+            <p class="tags"><span>Student Modeling</span><span>Interpretable AI</span><span>Transformer Interpretability</span><span>Transportation Data Science</span></p>
+            <p>I am a <strong>Research Assistant at the University of Florida</strong>, working with the <strong>McTrans Center</strong> and <strong>I-Street</strong> at the UF Transportation Institute. My work sits where transportation engineering meets data science and AI. I build geospatial pipelines that retrieve traffic data (AADT) for any location and develop machine learning models that estimate intersection turning movement counts.</p>
+            <p>I earned my <strong>B.A. in Computer Science &amp; Statistics from Mount Holyoke College</strong> (2026). Before transportation, I did research on interpretable student modeling with large language models at the UMass Amherst ML4ED Lab, which sparked my interest in cognitive science, how transformers represent knowledge, and how steering their activations changes what they do. I have also worked on robotics motion planning for protein–ligand binding at the RoSE and Parasol labs, and mathematical modeling of fractal growth at Hampshire College.</p>
+            <div class="btns">
+                <a class="btn" href="research.html">See my research</a>
+                <a class="btn outline" href="#" data-view="cv" data-pages="3" data-width="900" data-title="Farzana Chowdhury · Curriculum Vitae">CV</a>
+                <a class="btn outline" href="mailto:farzanachowdhury@ufl.edu">Email me</a>
+            </div>
+        </div>
+        <img src="assets/profile.jpg" alt="Portrait of Farzana Chowdhury">
+    </section>
+
+    <!-- ===== Selected research ===== -->
+    <section id="selected">
+        <div class="section-head"><h2>Selected research</h2><a href="research.html">All research →</a></div>
+
+        <article class="project">
+            <a class="thumb" href="research.html#persona-mcmc" aria-label="Persona-MCMC">
+                <svg viewBox="0 0 240 150" aria-hidden="true">
+                    <rect width="240" height="150" fill="#f3f1ec"/>
+                    <g font-family="Inter, sans-serif" font-size="11">
+                        <rect x="20" y="22" width="200" height="106" rx="6" fill="#fff" stroke="#e4e1da"/>
+                        <text x="32" y="42" font-weight="600" fill="#1f2328">Student persona</text>
+                        <rect x="32" y="52" width="150" height="6" rx="3" fill="#d6d1c6"/>
+                        <rect x="32" y="64" width="120" height="6" rx="3" fill="#1d6670" opacity=".7"/>
+                        <rect x="32" y="76" width="165" height="6" rx="3" fill="#d6d1c6"/>
+                        <rect x="32" y="88" width="90" height="6" rx="3" fill="#c7772d" opacity=".7"/>
+                        <rect x="32" y="100" width="140" height="6" rx="3" fill="#d6d1c6"/>
+                        <text x="158" y="118" fill="#1d6670" font-weight="600">accept ✓</text>
+                    </g>
+                </svg>
+            </a>
+            <div>
+                <h3><a href="research.html#persona-mcmc">Persona-MCMC: Interpretable Student Modeling with LLMs</a></h3>
+                <p>Learning human-readable student "personas" that let an LLM predict answers to unseen questions. The method outperformed IRT and in-context learning baselines. <span class="status">Manuscript in preparation for AIED 2027</span></p>
+                <p class="method"><b>Method:</b> Multi-agent LLM prompting; Metropolis-Hastings-inspired refinement; persona aggregation.</p>
+                <a class="more" href="research.html#persona-mcmc">Explore the project →</a>
+            </div>
+        </article>
+
+        <article class="project">
+            <a class="thumb" href="research.html#tmc" aria-label="Turning movement count estimation">
+                <svg viewBox="0 0 240 150" aria-hidden="true">
+                    <rect width="240" height="150" fill="#f3f1ec"/>
+                    <rect x="98" y="0" width="44" height="150" fill="#d6d1c6"/>
+                    <rect x="0" y="53" width="240" height="44" fill="#d6d1c6"/>
+                    <g stroke="#fff" stroke-dasharray="5 4"><line x1="120" y1="0" x2="120" y2="52"/><line x1="120" y1="98" x2="120" y2="150"/><line x1="0" y1="75" x2="97" y2="75"/><line x1="143" y1="75" x2="240" y2="75"/></g>
+                    <g fill="none" stroke-width="3" stroke-linecap="round">
+                        <path d="M126 140 L126 106 Q126 98 118 98 L108 98" stroke="#c7772d"/>
+                        <path d="M132 140 L132 100" stroke="#1d6670"/>
+                        <path d="M138 140 L138 106 Q138 98 146 98 L156 98" stroke="#6b4fa0"/>
+                    </g>
+                </svg>
+            </a>
+            <div>
+                <h3><a href="research.html#tmc">ML Estimation of Intersection Turning Movement Counts</a></h3>
+                <p>Estimating how many vehicles turn left, go straight, or turn right at intersections that have never been counted, using traffic and roadway data that are already available.</p>
+                <p class="method"><b>Method:</b> Feature engineering; supervised machine learning; model evaluation and error analysis.</p>
+                <a class="more" href="research.html#tmc">Explore the project →</a>
+            </div>
+        </article>
+
+        <article class="project">
+            <a class="thumb" href="research.html#aadt" aria-label="AADT retrieval with geospatial matching">
+                <svg viewBox="0 0 240 150" aria-hidden="true">
+                    <rect width="240" height="150" fill="#f3f1ec"/>
+                    <g stroke="#d6d1c6" stroke-width="9" fill="none" stroke-linecap="round">
+                        <path d="M-5 110 C 60 104, 130 98, 245 70"/><path d="M50 -5 L 80 155"/><path d="M175 -5 C 168 50, 182 100, 195 155"/>
+                    </g>
+                    <path d="M80 103 C 115 100, 140 95, 172 87" stroke="#1d6670" stroke-width="9" fill="none" stroke-linecap="round"/>
+                    <line x1="125" y1="58" x2="126" y2="96" stroke="#c7772d" stroke-width="1.5" stroke-dasharray="4 3"/>
+                    <circle cx="125" cy="50" r="8" fill="#c7772d"/><circle cx="125" cy="50" r="3" fill="#fff"/>
+                </svg>
+            </a>
+            <div>
+                <h3><a href="research.html#aadt">Location-Based AADT Retrieval with Geospatial Matching</a></h3>
+                <p>A pipeline that turns any map location into the right roadway segment and its Annual Average Daily Traffic, with computer vision and OCR used to validate values from transportation maps.</p>
+                <p class="method"><b>Method:</b> Python geospatial processing; GIS APIs; spatial roadway matching; CV / OCR.</p>
+                <a class="more" href="research.html#aadt">Explore the project →</a>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- ===== Publications ===== -->
+    <section id="publications">
+        <div class="section-head"><h2>Publications &amp; presentations</h2></div>
+        <div class="entry">
+            <span class="status">Manuscript in preparation</span>
+            <h3>Persona-MCMC: Iterative LLM Persona Refinement for Interpretable Student Modeling</h3>
+            <div class="pub-authors"><strong>Chowdhury, F.</strong>, Scarlatos, A., McNichols, H., &amp; Lan, A.</div>
+            <div class="pub-venue">In preparation for AIED 2027 (International Conference on Artificial Intelligence in Education)</div>
+            <a class="more" href="#" data-view="persona-mcmc" data-pages="9" data-width="860" data-title="Persona-MCMC: Iterative LLM Persona Refinement for Interpretable Student Modeling">View pre-print →</a>
+        </div>
+        <div class="entry">
+            <span class="status">Pre-print · Under review</span>
+            <h3>What if DLA has it backwards? Flow reverses aggregation from divergent to convergent growth</h3>
+            <div class="pub-authors">Mulder, K., Danese, C., Bui, M.-A., Nazhat, A., <strong>Chowdhury, F.</strong>, &amp; Chen, W.</div>
+            <div class="pub-venue">Physical Review Letters</div>
+            <a class="more" href="#" data-view="dla-preprint" data-pages="11" data-width="860" data-title="What if DLA has it backwards? Flow reverses aggregation from divergent to convergent growth (pre-print)">View pre-print →</a>
+        </div>
+        <div class="entry">
+            <span class="status">Poster</span>
+            <h3>Protein–Ligand Affinity Score Using Motion Planning</h3>
+            <div class="pub-authors"><strong>Chowdhury, F.</strong>, Mozumdar, R., &amp; Uwacu, D.</div>
+            <div class="pub-venue">Summer Symposium, Mount Holyoke College, 2025 · ACM Massachusetts Gender-Inclusive Computing Celebration (MAGICC), 2025</div>
+            <a class="more" href="#" data-view="protein-ligand" data-pages="1" data-width="1100" data-title="Protein–Ligand Affinity Score Using Motion Planning (poster)">View poster →</a>
+        </div>
+        <div class="entry">
+            <span class="status">Talk</span>
+            <h3>Development of tools for parameterization and validation of a model of fractal growth using image analysis and embedding</h3>
+            <div class="pub-authors"><strong>Chowdhury, F.</strong>, &amp; Nazhat, A.</div>
+            <div class="pub-venue">Hudson River Undergraduate Mathematics Conference (HRUMC), 2025</div>
+            <a class="more" href="#" data-view="hrumc-slides" data-pages="24" data-width="1100" data-title="HRUMC 2025: Tools for parameterization and validation of a model of fractal growth (slides)">View slides →</a>
+        </div>
+    </section>
+
+    <!-- ===== Experience ===== -->
+    <section id="experience">
+        <div class="section-head"><h2>Experience</h2></div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Research Assistant · McTrans Center</h3><span class="when">Aug 2026 – Present</span></div>
+            <div class="where">University of Florida, Gainesville, FL</div>
+            <ul>
+                <li>Working on a geospatial traffic-data pipeline that retrieves Annual Average Daily Traffic (AADT) from transportation data sources using geographic coordinates, GIS APIs, and spatial roadway matching.</li>
+                <li>Implementing roadway and intersection matching using Python-based geospatial processing and roadway geometry to associate user-selected locations with corresponding traffic data and roadway segments.</li>
+                <li>Investigating computer vision and OCR methods for extracting and validating traffic information from transportation maps, with emphasis on improving reliability for integration into production transportation software.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Research Assistant · I-Street, Transportation Institute</h3><span class="when">Aug 2026 – Present</span></div>
+            <div class="where">University of Florida, Gainesville, FL</div>
+            <ul>
+                <li>Developing a machine learning approach for estimating intersection turning movement counts (TMCs) from available traffic and roadway data, including data processing, feature development, model evaluation, and analysis of estimation performance.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Undergraduate Research Assistant · ML4ED Lab</h3><span class="when">Jun 2025 – Feb 2026</span></div>
+            <div class="where">University of Massachusetts Amherst, MA</div>
+            <ul>
+                <li>Designed a Metropolis-Hastings-inspired Markov chain Monte Carlo (MCMC) pipeline to generate interpretable student personas and predict students' performance.</li>
+                <li>Worked on prompt engineering, built supporting baselines and an iteration logging system to compare against In-Context Learning (ICL) and Item Response Theory (IRT) models.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Robotics Research Assistant · RoSE Lab &amp; Parasol Lab</h3><span class="when">Jun 2024 – Dec 2025</span></div>
+            <div class="where">Mount Holyoke College &amp; University of Illinois Urbana-Champaign</div>
+            <ul>
+                <li>Worked on predicting protein–ligand binding affinity scores using a modified Probabilistic Roadmap (PRM) motion planning algorithm, performed energy-based evaluation using the OpenMM molecular dynamics library, and benchmarked results against AutoDock and CAVER to analyze geometric and energetic constraints.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Mathematics Research Assistant · Dept. of Mathematics &amp; Statistics</h3><span class="when">Jan 2024 – May 2025</span></div>
+            <div class="where">Hampshire College, Amherst, MA</div>
+            <ul>
+                <li>Investigated the behavior of a triangular agent-based model to simulate fractal growth similar to absorptive spin-coating polymers.</li>
+                <li>Generated statistics using ImageJ/Fiji with Mitochondrial Network Analysis (MiNA) preprocessing and developed an automated algorithm to calculate angles between polymer branches.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Teaching Assistant</h3><span class="when">Aug 2023 – May 2025</span></div>
+            <div class="where">Mount Holyoke College, South Hadley, MA</div>
+            <ul>
+                <li>Tutored and graded coursework for two undergraduate courses: <em>Introduction to Statistics</em> and <em>Linear Algebra</em>.</li>
+                <li>Assisted peers through homework support and feedback, and helped develop problem-solving skills.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Data Science Intern · Data Glacier</h3><span class="when">May 2023 – Aug 2023</span></div>
+            <div class="where">Pyraganj, India</div>
+            <ul>
+                <li>Performed data analysis on 300k+ rows of data to identify taxi market trends, and collaborated on data preprocessing using several cleaning techniques.</li>
+                <li>Built and evaluated ML models (Logistic Regression, Random Forest) for medical condition prediction, deploying the final model as a Flask web app on Heroku.</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Data Science Intern · MHA Management Holdings</h3><span class="when">May 2022 – Aug 2022</span></div>
+            <div class="where">Germiston, South Africa</div>
+            <ul>
+                <li>Analyzed sales data to identify factors driving successful leads using Random Forest, k-means clustering, and Tableau.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section id="projects">
+        <div class="section-head"><h2>Personal projects</h2></div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Student Response Interpretation Using BERT</h3><span class="when">NLP Course Project (NLP 341)</span></div>
+            <p>This project asked two questions: can a fine-tuned BERT model tell whether a student's answer to a science question is correct, and do its attention weights point to the words that matter? I fine-tuned BERT-base on SciEntsBank (about 11K student responses to 197 science questions across 15 domains) for correct/incorrect classification. I evaluated it on three increasingly hard test sets: unseen answers, unseen questions, and unseen domains. I then visualized the [CLS] token's attention for correct and incorrect answers. Class imbalance pushed the model toward predicting "incorrect," and attention focused on content words in the question without clearly separating right from wrong answers. This result motivated my interest in looking deeper inside transformers. Next steps include adding the reference answer as input and trying 3-way labels.</p>
+            <p class="method"><b>Tools:</b> Python, BERT-base (fine-tuning), SciEntsBank, attention visualization · <a href="#" data-view="bert-slides" data-pages="10" data-width="1000" data-title="Student Response Interpretation Using BERT (slides)">View slides →</a></p>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Theraplane: AI-Powered Scheduling App for College Counselors</h3><span class="when">HackHarvard 2024</span></div>
+            <p>Built an AI platform using GPT-4 and RAG to prioritize appointments by urgency, helping counselors manage caseloads efficiently. Integrated with a calendar API to automate scheduling and notifications.</p>
+            <p class="method"><b>Tools:</b> Python, GPT-4, RAG, Flask, HTML, Tailwind CSS, API integration · <a href="https://github.com/ChowdhuryFarzana/Theraplane_AI" target="_blank" rel="noopener">GitHub →</a></p>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>CurrencyPairs: Real-Time Forex Analytics</h3><span class="when">HackHolyoke 2024 · Best Finance Hack Winner</span></div>
+            <p>Developed a web app providing real-time forex market insights through a dynamic, interactive dashboard. Integrated live data from yFinance and the OANDA API, with predictive analytics to support informed trading decisions.</p>
+            <p class="method"><b>Tools:</b> Python, Flask backend, Vue.js for a responsive UI · <a href="https://devpost.com/software/currencypairs" target="_blank" rel="noopener">Devpost →</a></p>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Smartphone Usage and Attention Modeling (Dartmouth StudentLife dataset)</h3><span class="when">Data Science Capstone</span></div>
+            <p>Analyzed 3,000+ behavioral records to study how smartphone usage (unlock patterns, night activity, and momentary assessments) relates to attention across a semester. Built a mixed-effects regression pipeline and implemented per-user ARIMA and SARIMA time-series models to capture temporal structure in productivity patterns. Evaluated the significance of predictors (p-values, F-statistics) and computed per-user RMSE for model comparison.</p>
+            <p class="method"><b>Tools:</b> Python, pandas, statsmodels, scikit-learn, data visualization · <a href="https://github.com/ChowdhuryFarzana/studentlife-productivity-analysis" target="_blank" rel="noopener">GitHub →</a></p>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top"><h3>Cat Loaf CNN Classifier</h3><span class="when">Deep Learning</span></div>
+            <p>CNN classifying cat poses, using image preprocessing and data augmentation (66% validation accuracy).</p>
+            <p class="method"><b>Tools:</b> TensorFlow, Keras · <a href="https://github.com/ChowdhuryFarzana/Cat-vs.-Cat-Loaf" target="_blank" rel="noopener">GitHub →</a></p>
+        </div>
+    </section>
+
+    <!-- ===== Education & skills ===== -->
+    <section id="education">
+        <div class="section-head"><h2>Education &amp; skills</h2></div>
+        <div class="two-col">
+            <div>
+                <div class="entry" style="padding-top:0">
+                    <div class="entry-top"><h3>Mount Holyoke College</h3><span class="when">May 2026</span></div>
+                    <div class="where">B.A., Computer Science &amp; Statistics</div>
+                    <p style="font-size:.93rem;color:var(--muted)"><strong style="color:var(--ink)">Coursework:</strong> Algorithms, Natural Language Processing, Computer Vision, Applied Regression, Probability, Mathematical Statistics, Linear Algebra, Operating Systems, Robotics Planning Algorithms, Calculus III, Discrete Mathematics, Research Methods in Data Science.</p>
+                </div>
+            </div>
+            <dl class="skills">
+                <dt>Programming languages</dt>
+                <dd>Python, Java, C++, R, SQL, HTML/CSS</dd>
+                <dt>Software &amp; libraries</dt>
+                <dd>PyTorch, TensorFlow, scikit-learn, Git, Mathematica, Flask, Heroku, Tableau</dd>
+            </dl>
+        </div>
+    </section>
+
+    <!-- ===== Awards & leadership ===== -->
+    <section id="awards">
+        <div class="section-head"><h2>Awards &amp; leadership</h2></div>
+        <h3 style="margin-bottom:.4rem">Awards &amp; honors</h3>
+        <div class="entry">
+            <div class="entry-top"><h3>Jennifer Dawn Landry '93 Memorial Award</h3><span class="when">2025</span></div>
+            <div class="where">Mount Holyoke College</div>
+            <p>Awarded to a student who shows exceptional perseverance, resilience, and dedication to academic and community excellence.</p>
+        </div>
+        <div class="entry">
+            <div class="entry-top"><h3>Andrew W. Mellon Research Internship</h3><span class="when">2024</span></div>
+            <div class="where">Andrew W. Mellon Fund</div>
+            <p>Awarded for academic excellence and commitment to advancing research. It supported full-time summer research in mathematical modeling.</p>
+        </div>
+        <div class="entry">
+            <div class="entry-top"><h3>Leadership Academy Fellow</h3><span class="when">2024</span></div>
+            <div class="where">University of Massachusetts Amherst</div>
+            <p>Selected for a competitive fellowship on leadership development, negotiation, and strategic communication. Completed intensive workshops with industry leaders and worked with peers on case-based problem solving.</p>
+        </div>
+        <div class="entry">
+            <div class="entry-top"><h3>MHC Leadership &amp; Service Award</h3><span class="when">2023</span></div>
+            <div class="where">Mount Holyoke College</div>
+            <p>Recognized for outstanding contributions to campus community building, cross-cultural engagement, and mentorship through student organizations and residence life.</p>
+        </div>
+
+        <h3 style="margin:2rem 0 .4rem">Leadership</h3>
+        <div class="entry">
+            <div class="entry-top"><h3>President, Bangladeshi Student Association</h3><span class="when">2023 – 2025</span></div>
+            <div class="where">Mount Holyoke College</div>
+            <p>Led cultural programming, community engagement, and collaboration with the Bondhu Organization to promote South Asian representation on campus. Organized large-scale cultural events, fundraisers, and workshops, increasing membership and visibility.</p>
+        </div>
+        <div class="entry">
+            <div class="entry-top"><h3>Resident Advisor</h3><span class="when">2023 – 2026</span></div>
+            <div class="where">Mount Holyoke College</div>
+            <p>Managed a residential community of 48 students, fostering an inclusive and supportive environment. Organized themed programming, mediated conflicts, enforced policy, and supported student well-being through peer mentorship and crisis-response training.</p>
+        </div>
+        <div class="entry">
+            <div class="entry-top"><h3>Marketing &amp; Media Assistant, Computer Science Society</h3><span class="when">2024 – 2025</span></div>
+            <div class="where">Mount Holyoke College</div>
+            <p>Designed promotional materials, managed outreach campaigns, and increased engagement for CS events, workshops, and study sessions. Developed branding and digital content to support community growth and visibility.</p>
+        </div>
+        <div class="entry">
+            <div class="entry-top"><h3>Hall Senator, Student Government Association</h3><span class="when">2023 – 2024</span></div>
+            <div class="where">Mount Holyoke College</div>
+            <p>Represented student voices in institutional decision-making. Advocated for academic and student-life improvements, contributed to policy discussions, and collaborated with committees to strengthen campus initiatives.</p>
+        </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact">
+        <div class="section-head"><h2>Get in touch</h2></div>
+        <p>I'm happy to talk about research collaborations, transportation data and ML, or interesting ideas in general. If you'd like a copy of a paper or poster, just ask.</p>
+        <p><a class="contact-mail" href="mailto:farzanachowdhury@ufl.edu">farzanachowdhury@ufl.edu</a></p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="links">
+            <a href="mailto:farzanachowdhury@ufl.edu">Email</a>
+            <a href="#" data-view="cv" data-pages="3" data-width="900" data-title="Farzana Chowdhury · Curriculum Vitae">CV</a>
+            <a href="https://github.com/ChowdhuryFarzana" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/chowdhuryfarzana/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        © 2026 Farzana Chowdhury
+    </div>
+</footer>
+
+<script src="assets/viewer.js"></script>
 </body>
 </html>

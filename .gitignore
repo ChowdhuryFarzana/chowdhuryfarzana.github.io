@@ -1,0 +1,4 @@
+# Raw research files: kept local so the PDFs are never published (site shows page images instead)
+/research_project/
+.DS_Store
+/CV/
