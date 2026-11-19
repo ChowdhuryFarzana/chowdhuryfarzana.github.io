@@ -47,7 +47,7 @@
             </div>
             <div class="interest">
                 <h3>Activation steering: from understanding to control</h3>
-                <p>If concepts live as directions in a model's activation space, we can test that claim by intervening. Activation steering adds or removes such a direction during the forward pass and measures how the outcome changes. I find this exciting for two reasons. Scientifically, it turns interpretability from correlation into causal evidence: if steering a "misconception" direction changes the answers, the model really uses it. Practically, it could let us shape model behavior precisely, for example simulating a student with a specific misconception, or making an AI tutor more faithful to a learner's level, without retraining.</p>
+                <p>If concepts live as directions in a model's activation space, we can test that claim by intervening. Activation steering adds or removes such a direction during the forward pass and measures how the outcome changes. I find this exciting for two reasons. Scientifically, it turns interpretability from correlation into causal evidence: if steering a "misconception" direction changes the answers, the model really uses it. Practically, it could let us shape model behavior precisely, for example simulating a student with a specific misconception, or making an AI tutor more faithful to a learner's level, without retraining. I am currently exploring how multiple steering interventions interact in <a href="#flowsteer">Flowsteer</a>, a collaboration with Santanu Bosu at Yale University.</p>
             </div>
             <div class="interest">
                 <h3>Probabilistic and interpretable AI</h3>
@@ -149,6 +149,40 @@
             </figure>
             <div class="btns" style="margin-top:4px">
                 <button class="btn" data-view="persona-mcmc" data-pages="9" data-width="860" data-title="Persona-MCMC: Iterative LLM Persona Refinement for Interpretable Student Modeling">View pre-print</button>
+            </div>
+        </article>
+
+        <!-- Flowsteer -->
+        <article class="project" id="flowsteer">
+            <div class="thumb">
+                <svg viewBox="0 0 240 150" role="img" aria-label="Two steering paths applied in different orders end at different points">
+                    <defs>
+                        <marker id="fsA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d6670"/></marker>
+                        <marker id="fsB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c7772d"/></marker>
+                    </defs>
+                    <rect width="240" height="150" fill="#f3f1ec"/>
+                    <g fill="none" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M40 124 C 70 120, 100 116, 128 108" stroke="#1d6670" marker-end="url(#fsA)"/>
+                        <path d="M132 106 C 146 88, 156 66, 162 44" stroke="#c7772d" marker-end="url(#fsB)"/>
+                        <path d="M40 124 C 46 104, 54 84, 66 66" stroke="#c7772d" marker-end="url(#fsB)"/>
+                        <path d="M70 64 C 110 58, 160 58, 204 62" stroke="#1d6670" marker-end="url(#fsA)"/>
+                    </g>
+                    <circle cx="40" cy="124" r="4" fill="#1f2328"/>
+                    <circle cx="163" cy="40" r="3" fill="#1f2328"/><circle cx="207" cy="62" r="3" fill="#1f2328"/>
+                    <path d="M166 41 L204 60" stroke="#6b4fa0" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    <g font-family="Inter, sans-serif" font-size="11">
+                        <text x="62" y="138" fill="#1d6670">A then B</text>
+                        <text x="76" y="52" fill="#c7772d">B then A</text>
+                        <text x="188" y="40" fill="#6b4fa0">gap</text>
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <span class="badge">Interpretability · Ongoing</span>
+                <h3>Flowsteer: The Geometry of Interacting Steering Interventions</h3>
+                <div class="meta">In collaboration with Santanu Bosu, Yale University · 2026 – Present</div>
+                <p>Activation steering changes a language model's behavior by nudging its internal representations. Flowsteer asks what happens when we apply <em>more than one</em> steering intervention: does the order matter, and can we predict how two interventions interact? We treat steering as flows in the model's representation space and use tools from differential geometry to study these interactions.</p>
+                <p class="method"><b>Method:</b> Activation steering in transformer language models; dynamical systems and differential geometry.</p>
             </div>
         </article>
 
